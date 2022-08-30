@@ -5,9 +5,16 @@ import globalStyles from "../../Styles";
 import { ProfileScreenNavigationProp } from "./drinkCard";
 
 interface CafeListProps {
-
-    navigation: any,
-    cafeData: any
+  children?: React.ReactNode,
+  key: string,
+  cafeData: {
+    id: string;
+    name: string;
+    address: string;
+    coordinates: string;
+    description: string;
+    image: any;
+  }
 
 }
 
@@ -18,7 +25,7 @@ const CafeList: React.FC<CafeListProps> = ({cafeData}) => {
 
   return ( 
 
-      <TouchableWithoutFeedback key={cafeData} onPress={()=>navigation.navigate('Cafe', cafeData.id)}>
+      <TouchableWithoutFeedback key={cafeData.id} onPress={()=>navigation.navigate('Cafe', cafeData.id)}>
         <View style={globalStyles.cafeContainer} >
           <Image source={cafeData.image}/>
           <View style={globalStyles.cafeDescription}>

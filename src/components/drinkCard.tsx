@@ -6,15 +6,23 @@ import { Image, Text, TouchableWithoutFeedback, View } from "react-native";
 
 import globalStyles from '../../Styles';
 
-interface Props {
-  navigation: any,
-  drinkCardData: any
-}
 
 export type ProfileScreenNavigationProp = Props['navigation'];
 
+interface DrinkCardProps {
+  children?: React.ReactNode,
+  key: number | string,
+  drinkCardData: {
+    id: number,
+    cofeId: number,
+    name: string,
+    price: number,
+    favorite: boolean,
+    imagesPath: any,
+  }
+}
  
-const DrinkCard: React.FC<Props> = ({drinkCardData}) => {
+const DrinkCard: React.FC<DrinkCardProps> = ({drinkCardData}) => {
   const navigation = useNavigation<ProfileScreenNavigationProp>();
 
   return (
