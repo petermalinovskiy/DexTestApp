@@ -1,16 +1,10 @@
 import React from "react";
 import {
   StyleSheet,
-  TouchableHighlight,
   View,
   Text,
-  StatusBar,
   ImageBackground,
-  SafeAreaViewBase,
-  Button,
   TouchableWithoutFeedback,
-  FlatList,
-  ActivityIndicator,
   Image
 } from 'react-native';
 import LinearGradient from "react-native-linear-gradient";

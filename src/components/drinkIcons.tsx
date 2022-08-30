@@ -19,4 +19,4 @@ const DrinkIcons: React.FC = () => {
    );
 }
  
-export default DrinkIcons;
+export default DrinkIcons; 

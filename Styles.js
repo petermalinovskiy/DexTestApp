@@ -215,6 +215,42 @@ const globalStyles = StyleSheet.create({
     fontSize: 20,
   },
 
+  cafeContainer: {
+    flexDirection: 'row',
+    marginVertical: 5,
+    height: 126,
+    backgroundColor: '#ffffff'
+  },
+
+  cafeDescription: {
+    flex: 1,
+    flexDirection: 'column',
+    paddingLeft: 25,
+    justifyContent: 'center',
+    shadowRadius: 4,
+    shadowColor: '#000000'
+
+  },
+
+  cafeName: {
+    fontFamily: 'SF-UI-Display-Bold',
+    fontSize: 20,
+    color: '#C8D9AF',
+    marginBottom: 10
+  },
+
+  cafeText: {
+    fontFamily: 'SF-UI-Display-Light',
+    fontSize: 14,
+    color: '#717171'
+  },
+
+  cafeAdress: {
+    fontFamily: 'SF-UI-Display-Regular',
+    fontSize: 16,
+    color: '#717171'
+  },
+
 })
 
 export default globalStyles

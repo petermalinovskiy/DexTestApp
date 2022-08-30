@@ -1,12 +1,8 @@
 import React from "react";
 import {
   StyleSheet,
-  ScrollView,
-  View,
   Text,
-  StatusBar,
   ImageBackground,
-  SafeAreaViewBase
 } from 'react-native';
 import LinearGradient from "react-native-linear-gradient";
 import { SafeAreaView } from "react-native-safe-area-context";

@@ -1,6 +1,6 @@
 
 import { useNavigation } from "@react-navigation/native";
-import React, { ReactNode } from "react";
+import React from "react";
 import { Image, Text, TouchableWithoutFeedback, View } from "react-native";
 
 
@@ -11,7 +11,7 @@ interface Props {
   drinkCardData: any
 }
 
-type ProfileScreenNavigationProp = Props['navigation'];
+export type ProfileScreenNavigationProp = Props['navigation'];
 
  
 const DrinkCard: React.FC<Props> = ({drinkCardData}) => {

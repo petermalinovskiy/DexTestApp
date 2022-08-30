@@ -1,7 +1,5 @@
 import React, { useState, Validator} from 'react'
-import axios from 'axios';
 import { Image, StatusBar, StyleSheet, Text, TextInput, TouchableOpacity, Keyboard , View } from 'react-native';
-import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 interface RegistrationFormProps {
