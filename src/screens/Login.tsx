@@ -23,7 +23,7 @@ const Login: React.FC<ILoginProps> = ({navigation}) => {
 
   return ( 
     <SafeAreaView style={{flex: 1}}>
-      <ImageBackground source={require('../../assets/img/logoBackGround.png')} resizeMode="cover" style={globalStyles.bgImage}>
+      <ImageBackground source={require('../../assets/img/logoBackGround.png')} resizeMode='cover' style={globalStyles.bgImage}>
         <LinearGradient colors={["rgba(0,0,0, 0.1)", "rgba(243,233,216, 0.79)"]} style={globalStyles.gradient}>
           <Text style={globalStyles.loginText}>CoffeTime</Text>
           <View>
@@ -41,7 +41,6 @@ const Login: React.FC<ILoginProps> = ({navigation}) => {
               </TouchableWithoutFeedback>  
             </View>
           </View>
-
         </LinearGradient>
       </ImageBackground>
     </SafeAreaView> 
