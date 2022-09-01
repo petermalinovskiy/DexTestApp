@@ -4,7 +4,7 @@ import loginReducer from './reducers/loginReducer';
 
 export const store = configureStore({
   reducer: {
-    user: loginReducer
+    sessionID: loginReducer
   },
 });
 

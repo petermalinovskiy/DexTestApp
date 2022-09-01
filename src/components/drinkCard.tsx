@@ -4,7 +4,7 @@ import React from "react";
 import { Image, Text, TouchableWithoutFeedback, View } from "react-native";
 
 
-import globalStyles from '../../Styles';
+import globalStyles from '../../styles/Styles';
 
 
 export type ProfileScreenNavigationProp = Props['navigation'];

@@ -1,11 +1,12 @@
 import {createAsyncThunk, createSlice, PayloadAction} from '@reduxjs/toolkit';
+import { RootState } from '../store';
 
 interface UserState {
-  user: string | null  
+  sessionID: string | undefined  
 }
 
 const initialState: UserState = {
-  user: null,
+  sessionID: undefined,
 };
 
 // The function below is called a thunk and allows us to perform async logic. It
@@ -14,21 +15,23 @@ const initialState: UserState = {
 // code can then be executed and other actions can be dispatched
 
 
-export const userSlice = createSlice({
-  name: 'user',
+export const sessionIDSlice = createSlice({
+  name: 'sessionID',
   initialState,
   reducers: {
     logout: (state) => {
-      null;
+      state.sessionID = undefined;
     },
     // Use the PayloadAction type to declare the contents of `action.payload`
-    login: (state, action: PayloadAction<number>) => {
-      action.payload;
+    login: (state, action: PayloadAction<string>) => {
+      state.sessionID = action.payload;
     },
   },
 
 });
 
-export const {logout, login} = userSlice.actions;
+export const {logout, login} = sessionIDSlice.actions;
 
-export default userSlice.reducer;
+export const selectSessionID = (state: RootState) => state.sessionID.sessionID
+
+export default sessionIDSlice.reducer;

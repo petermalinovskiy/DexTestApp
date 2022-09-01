@@ -1,43 +1,81 @@
 import React, { useRef, useState} from 'react'
 import { Image, StatusBar, StyleSheet, Text, TextInput, TouchableOpacity, Keyboard , View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { ERROR_RED } from '../../styles/stylesConstant';
+import { useAppDispatch } from '../app/hooks';
+import { login, selectSessionID } from '../app/reducers/loginReducer';
+import { useAppSelector } from "../app/hooks";
+import { ProfileScreenNavigationProp } from './drinkCard';
+import { useNavigation } from '@react-navigation/native';
 
 interface ILoginFormProps {
-  getEmail: (value: string) => void,
-  getPassword: (value: string) => void,
-  getAuthorized: () => void,
+
 }
  
-const LoginForm: React.FC<ILoginFormProps> = ({getEmail, getPassword, getAuthorized}) => {
- const [emailInputValue, setEmailInputValue] = useState<string>('')
- const [passwordlInputValue, setPasswordInputValue] = useState<string>('')
+const LoginForm: React.FC<ILoginFormProps> = () => {
+  const [emailInputValue, setEmailInputValue] = useState<string>('')
+  const [passwordInputValue, setPasswordInputValue] = useState<string>('')
+  const [loginError, setLoginError] = useState<boolean>(false)
+  const dispatch = useAppDispatch();
+
+  const sessionID = useAppSelector(selectSessionID);
+  const navigation = useNavigation<ProfileScreenNavigationProp>();
+
+  const user = {
+    email: emailInputValue,
+    password: passwordInputValue
+  }
+
+  const authorizationURL  = 'http://ci2.dextechnology.com:8000/api/User/Authorization'
+
+  const authorization = (url: string) => { 
+    return fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(user)
+    })
+    .then((r) => r.json())
+    .catch(function(error) {
+      setLoginError(true);
+      console.log(error)
+    });
+  };
+
+  const getAuthorized = () =>  authorization(authorizationURL).then((data) => (console.log(data), dispatch(login(data))));
+
 
   const authorizeHandler = () => {
-    getAuthorized();
-    setEmailInputValue('');
-    setPasswordInputValue('');
+    getAuthorized()
+    .then(() => setEmailInputValue(''))
+    .then(() => setPasswordInputValue(''))
+    .then(sessionID ? (() => navigation.navigate('Main')) : null) //подумать над вариантом получше
   }
+  
+  
 
   return (
     <SafeAreaView style={styles.container} >
-      <View style={styles.inputView}>
+      {loginError ? <Text style={styles.loginError}>Неверный логин или пароль</Text> : null}
+      <View style={[styles.inputView,  (loginError ? styles.errorInputView:null)]}>
         <TextInput
           style={styles.TextInput}
-          onChangeText={value => {setEmailInputValue(value), getEmail(value)}}
+          onChangeText={value => (setEmailInputValue(value), setLoginError(false))}
           value={emailInputValue}
           placeholder="email"
           placeholderTextColor="#ffffff"
           onSubmitEditing={Keyboard.dismiss}
         />
       </View>
-      <View style={styles.inputView}>
+      <View style={[styles.inputView,  (loginError ? styles.errorInputView:null)]}>
         <TextInput
           style={styles.TextInput}
           placeholder="Пароль"
           placeholderTextColor="#ffffff"
           secureTextEntry={true}
-          onChangeText={value => {setPasswordInputValue(value), getPassword(value)}}
-          value={passwordlInputValue}
+          onChangeText={value => (setPasswordInputValue(value), setLoginError(false))}
+          value={passwordInputValue}
           onSubmitEditing={Keyboard.dismiss}
         />
       </View>
@@ -77,11 +115,6 @@ const styles = StyleSheet.create({
     color: '#FFFFFF'
   },
 
-  forgot_button: {
-    height: 30,
-    marginBottom: 30,
-  },
-
   loginBtn: {
     width: "80%",
     borderRadius: 25,
@@ -97,6 +130,20 @@ const styles = StyleSheet.create({
     fontSize: 18,
     color: '#FFFFFF'
   },
+
+  loginError: {
+    color: '#ffffff',
+    fontFamily: 'SF-UI-Display-Bold',
+    fontSize: 18,
+    backgroundColor: ERROR_RED,
+    borderRadius: 10,
+    paddingHorizontal: 10
+  },
+
+  errorInputView: {
+    borderColor: ERROR_RED,
+    color: ERROR_RED
+  }, 
 });
  
 export default LoginForm;

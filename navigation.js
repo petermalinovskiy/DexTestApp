@@ -1,14 +1,14 @@
 import React from "react";
 import Main from "./src/screens/Main";
+import EnterScreen from "./src/screens/EnterScreen";
 import Login from "./src/screens/Login";
 import Registration from "./src/screens/Registration";
 import Cafe from "./src/screens/Cafe";
 import Drink from "./src/screens/Drink";
-
-
 import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from "@react-navigation/native";
 import { SafeAreaProvider } from "react-native-safe-area-context";
+
 
 const Stack = createStackNavigator();
 
@@ -17,6 +17,11 @@ export default function Navigate() {
     <SafeAreaProvider>
     <NavigationContainer>
       <Stack.Navigator >
+        <Stack.Screen
+          name="EnterScreen"
+          component={EnterScreen}
+          options={{headerShown: false}}
+        />
         <Stack.Screen
           name="Login"
           component={Login}

@@ -2,7 +2,7 @@ import React from "react";
 import { View, ScrollView, ImageBackground, StyleSheet, Text, Image } from "react-native";
 import LinearGradient from "react-native-linear-gradient";
 import Header from '../components/header';
-import globalStyles from '../../Styles';
+import globalStyles from '../../styles/Styles';
 import DrinkCard from "../components/drinkCard";
 import {cafeDrinkData} from '../features/data'
 

@@ -1,7 +1,7 @@
 import { useNavigation } from "@react-navigation/native";
 import React from "react";
 import { Image, Text, TouchableWithoutFeedback, View } from "react-native";
-import globalStyles from "../../Styles";
+import globalStyles from "../../styles/Styles";
 import { ProfileScreenNavigationProp } from "./drinkCard";
 
 interface CafeListProps {

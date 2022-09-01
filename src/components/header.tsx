@@ -2,7 +2,7 @@ import { useNavigation } from "@react-navigation/native";
 import React from "react";
 import { StyleSheet, Text, TouchableWithoutFeedback, View } from "react-native";
 import Icon from 'react-native-vector-icons/FontAwesome';
-import globalStyles from "../../Styles";
+import globalStyles from "../../styles/Styles";
 
 
 

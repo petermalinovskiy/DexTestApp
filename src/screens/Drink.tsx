@@ -1,7 +1,7 @@
 import React from "react";
 import { FlatList, Image, ImageBackground, Pressable, StyleSheet, Text, View } from "react-native";
 import  Header from '../components/header';
-import globalStyles from '../../Styles'
+import globalStyles from '../../styles/Styles'
 import HitFlag from "../components/hitFlag";
 import DrinkIcons from "../components/drinkIcons";
 import {drinkData} from '../features/data'
