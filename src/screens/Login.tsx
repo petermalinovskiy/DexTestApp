@@ -9,17 +9,13 @@ import {
 import LinearGradient from "react-native-linear-gradient";
 import { SafeAreaView } from "react-native-safe-area-context";
 import globalStyles from '../../styles/Styles'
-
 import LoginForm from "../components/LoginForm";
+import type { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { StackParamList } from "../../navigation";
 
+type HomeScreenProps = NativeStackScreenProps<StackParamList, "Login">
 
-interface ILoginProps {
-  email: string,
-  password: string
-}
-
-const Login: React.FC<ILoginProps> = () => {
-
+const Login: React.FC<HomeScreenProps> = () => {
 
   return ( 
     <SafeAreaView style={{flex: 1}}>

@@ -5,20 +5,32 @@ import Header from '../components/header';
 import globalStyles from '../../styles/Styles';
 import DrinkCard from "../components/drinkCard";
 import {cafeDrinkData} from '../features/data'
+import type { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { Props, StackParamList } from "../../navigation";
+
+type HomeScreenProps = NativeStackScreenProps<StackParamList, "Cafe">
 
 interface CafeProps {
-  navigation: any
+  route: {
+    id: string,
+    name: string,
+    address: string,
+    coordinates: string,
+    description: string,
+    images: string,
+  }
 }
  
-const Cafe: React.FC<CafeProps> = ({navigation}) => {
+const Cafe = ({navigation, route}: Props) => {
   return ( 
     <ScrollView>
       <Header/>
-      <ImageBackground source={require('../../assets/img/Cafe1.png')} resizeMode="cover" style={globalStyles.mainCafeImage}>
-        <LinearGradient colors={["rgba(255,255,255, 0.03)", "rgba(247,236,218, 1)"]} locations={[0.6, 1]} style={globalStyles.cafeImageGradient}>
+      <ImageBackground source={{uri: route.params.images}} resizeMode="cover" style={globalStyles.mainCafeImage}>
+        <LinearGradient colors={["rgba(255,255,255, 0.03)", "rgba(0,0,0, 1)"]} locations={[0, 1]} style={globalStyles.cafeImageGradient}>
           <View>
-            <Text style={globalStyles.cafeName}>Coffe Fabrica</Text>
-            <Text style={globalStyles.cafeAdress}>ул.Макарова д.5</Text>
+            <Text style={globalStyles.cafeName}>{route.params.name}</Text>
+            <Text style={globalStyles.cafeAdress}>{route.params.description}</Text>
+            <Text style={globalStyles.cafeAdress}>{route.params.address}</Text>
           </View>
         </LinearGradient>
       </ImageBackground>

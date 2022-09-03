@@ -5,6 +5,10 @@ import globalStyles from '../../styles/Styles'
 import HitFlag from "../components/hitFlag";
 import DrinkIcons from "../components/drinkIcons";
 import {drinkData} from '../features/data'
+import type { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { Props, StackParamList } from "../../navigation";
+
+type HomeScreenProps = NativeStackScreenProps<StackParamList, "Drink">
 
 interface IDrink {
   id: string,
@@ -23,7 +27,7 @@ interface IDrink {
   imagesPath: any
 }
  
-const Drink: React.FC<IDrink> = () => {
+const Drink: React.FC<HomeScreenProps> = () => {
   return ( 
     <View style={{flex: 1}}>
       <Header/>

@@ -1,30 +1,54 @@
 import React from 'react';
 import {
   StyleSheet,
-  ScrollView,
-  View,
-  Text,
-  Image,
-  TouchableWithoutFeedback,
+  View
 } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
-import CafeList from '../components/cafeList';
+import { FlatList } from 'react-native-gesture-handler';
+import { useAppDispatch, useAppSelector } from '../app/hooks';
+import { getAllCafe, selectCafeAll } from '../app/reducers/cafeAllReducer';
+import { selectSessionID } from '../app/reducers/loginReducer';
+import CafeItem from '../components/CafeItem';
 import Header from '../components/header';
 import NoList from '../components/noList';
-import {cafeData} from '../features/data'
+import type { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { Props, StackParamList } from "../../navigation";
+
+type HomeScreenProps = NativeStackScreenProps<StackParamList, "Main">
 
 
-interface MainListProps {
-  navigation: any
-}
+const Main = ({navigation}: Props) => {
+  const dispatch = useAppDispatch();
+  const sessionID = useAppSelector(selectSessionID);
+  const allCafeData = useAppSelector(selectCafeAll)
 
-const MainList: React.FC <MainListProps> = ({navigation}) => {
+  const getAllCafeURL  = 'http://ci2.dextechnology.com:8000/api/Cafe/GetAll'
+
+  const authorization = (url: string) => { 
+    return fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(sessionID)
+    })
+    .then((r) => r.json())
+    .catch(function(error) {
+      console.log(error)
+    });
+  };
+
+  const getData  = () => authorization(getAllCafeURL).then((data) => (dispatch(getAllCafe(data))));
+  getData()
+
   return ( 
-    (cafeData.length > 0)  ? (
-      <ScrollView >
+    (allCafeData.length > 0)  ? (
+      <View>
         <Header/>
-        {cafeData.map(item=> <CafeList key={item.id} cafeData={item}/>)}
-      </ScrollView>
+        <FlatList
+          data={allCafeData}
+          renderItem={({item}) => <CafeItem cafeData={item}/>}
+          keyExtractor={item => item.id}/>
+      </View>
     ) : <NoList/>
    );
 }
@@ -33,7 +57,7 @@ const styles = StyleSheet.create({
   
 });
 
-export default MainList;
+export default Main;
 
 
 

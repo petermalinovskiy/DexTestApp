@@ -10,17 +10,12 @@ import {
 import LinearGradient from "react-native-linear-gradient";
 import { SafeAreaView } from "react-native-safe-area-context";
 import globalStyles from '../../styles/Styles';
+import type { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { StackParamList } from "../../navigation";
 
-interface IEnterScreenProps {
-  email: string,
-  password: string,
-  navigation: any
-}
- 
-const EnterScreen: React.FC<IEnterScreenProps> = ({navigation}) => {
+type HomeScreenProps = NativeStackScreenProps<StackParamList, "EnterScreen">
 
-
-
+const EnterScreen: React.FC<HomeScreenProps> = ({navigation}) => {
   return ( 
     <SafeAreaView style={{flex: 1}}>
       <ImageBackground source={require('../../assets/img/logoBackGround.png')} resizeMode='cover' style={globalStyles.bgImage}>
