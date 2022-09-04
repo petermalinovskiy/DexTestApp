@@ -1,33 +1,43 @@
 import React from "react";
 import { FlatList, Image, ImageBackground, Pressable, StyleSheet, Text, View } from "react-native";
-import  Header from '../components/header';
+import  Header from '../components/Header';
 import globalStyles from '../../styles/Styles'
-import HitFlag from "../components/hitFlag";
-import DrinkIcons from "../components/drinkIcons";
+import HitFlag from "../components/HitFlag";
+import DrinkIcons from "../components/DrinkIcons";
 import {drinkData} from '../features/data'
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { Props, StackParamList } from "../../navigation";
-
-type HomeScreenProps = NativeStackScreenProps<StackParamList, "Drink">
-
-interface IDrink {
-  id: string,
-  productName: string,
-  price: number,
-  cofeId: string,
-  cofeName: string,
-  favarite: boolean,
-  attribute: [
-    {
-      id: string,
-      description: string,
-      iconType: string
-    }
-  ],
-  imagesPath: any
-}
+import { DrinkProps, StackParamList } from "../../navigation";
+import { useAppDispatch, useAppSelector } from "../app/hooks";
+import { getProduct, selectProduct } from "../app/reducers/productReducer";
  
-const Drink: React.FC<HomeScreenProps> = () => {
+const Drink = ({route}: DrinkProps) => {
+  const dispatch = useAppDispatch();
+  const productData = useAppSelector(selectProduct)
+
+  const myProduct = {
+    sessionID: route.params.sessionID,
+    productId: route.params.productId,
+  }
+
+  const getDrinkURL  = 'http://ci2.dextechnology.com:8000/api/Product/GetProduct'
+
+  const getCafeData = (url: string) => { 
+    return fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(myProduct)
+    })
+    .then((r) => r.json())
+    .catch(function(error) {
+      console.log(error)
+    });
+  };
+
+  const getData  = () => getCafeData(getDrinkURL).then((data) => (console.log(data), dispatch(getProduct(data))));
+  getData()
+
   return ( 
     <View style={{flex: 1}}>
       <Header/>
@@ -35,11 +45,11 @@ const Drink: React.FC<HomeScreenProps> = () => {
       <View style={globalStyles.drinkContainer}>
         <Image source={drinkData.imagesPath} style={globalStyles.drinkCardImage}/>
         <View style={globalStyles.containerRow}>
-          <Text style={globalStyles.drinkCardName}>{drinkData.productName}</Text>
+          <Text style={globalStyles.drinkCardName}>{productData}</Text>
           <Image source={require('../../assets/img/likeBig.png')}/>
         </View>
         <DrinkIcons/>
-        <Text style={globalStyles.drinkCardDescription}>{drinkData.cofeName}</Text> 
+        <Text style={globalStyles.drinkCardDescription}>{console.log(productData)}</Text> 
         <View style={[globalStyles.containerRow, {justifyContent: 'space-between'}]}>
           <View style={globalStyles.containerRow}>
             <Text style={globalStyles.drinkPrice}>{drinkData.price}</Text>

@@ -5,8 +5,8 @@ import { ERROR_RED } from '../../styles/stylesConstant';
 import { useAppDispatch } from '../app/hooks';
 import { login, selectSessionID } from '../app/reducers/loginReducer';
 import { useAppSelector } from "../app/hooks";
-import { ProfileScreenNavigationProp } from './drinkCard';
 import { useNavigation } from '@react-navigation/native';
+import { ProfileScreenNavigationProp } from '../../navigation';
 
 interface ILoginFormProps {
 

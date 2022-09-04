@@ -1,8 +1,8 @@
 import { useNavigation } from "@react-navigation/native";
 import React from "react";
 import { Image, Text, TouchableWithoutFeedback, View } from "react-native";
+import { MainProfileScreenNavigationProp } from "../../navigation";
 import globalStyles from "../../styles/Styles";
-import { ProfileScreenNavigationProp } from "./drinkCard";
 
 interface CafeIremProps {
   children?: React.ReactNode,
@@ -16,8 +16,8 @@ interface CafeIremProps {
   }
 }
 
-const CafeItem: React.FC<CafeIremProps> = ({cafeData}) => {
-  const navigation = useNavigation<ProfileScreenNavigationProp>();
+export const CafeItem: React.FC<CafeIremProps> = ({cafeData}) => {
+  const navigation = useNavigation<MainProfileScreenNavigationProp>();
 
   return (
     <TouchableWithoutFeedback key={cafeData.id} onPress={()=>navigation.navigate('Cafe', cafeData)}>
@@ -32,5 +32,3 @@ const CafeItem: React.FC<CafeIremProps> = ({cafeData}) => {
     </TouchableWithoutFeedback>
   );
 }
- 
-export default CafeItem;

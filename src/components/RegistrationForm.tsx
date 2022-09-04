@@ -2,8 +2,8 @@ import React, { useRef, useState} from 'react'
 import { Image, StatusBar, StyleSheet, Text, TextInput, TouchableOpacity, Keyboard , View, Modal, Button } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { ERROR_RED } from '../../styles/stylesConstant';
-import { ProfileScreenNavigationProp } from './drinkCard';
 import { useNavigation } from '@react-navigation/native';
+import { ProfileScreenNavigationProp } from '../../navigation';
 
 interface IRegistrationFormProps {
 

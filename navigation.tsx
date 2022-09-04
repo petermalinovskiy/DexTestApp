@@ -16,10 +16,17 @@ export type StackParamList = {
   Registration: undefined;
   Main: undefined;
   Cafe: {id: string, name: string, address: string, coordinates: string, description: string, images: string,};
-  Drink: undefined;
+  Drink: {sessionID: string|undefined, productId: string};
 };
 
-export type Props = NativeStackScreenProps<StackParamList, 'Cafe'>;
+export type MainProps = NativeStackScreenProps<StackParamList, 'Main'>;
+export type MainProfileScreenNavigationProp = MainProps['navigation'];
+
+export type CafeProps = NativeStackScreenProps<StackParamList, 'Cafe'>;
+export type CafeProfileScreenNavigationProp = CafeProps['navigation'];
+
+export type DrinkProps = NativeStackScreenProps<StackParamList, 'Drink'>;
+export type DrinkProfileScreenRouteProp = DrinkProps['route'];
 
 const Stack = createStackNavigator<StackParamList>();
 

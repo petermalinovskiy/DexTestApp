@@ -7,23 +7,23 @@ import { FlatList } from 'react-native-gesture-handler';
 import { useAppDispatch, useAppSelector } from '../app/hooks';
 import { getAllCafe, selectCafeAll } from '../app/reducers/cafeAllReducer';
 import { selectSessionID } from '../app/reducers/loginReducer';
-import CafeItem from '../components/CafeItem';
-import Header from '../components/header';
-import NoList from '../components/noList';
+import { CafeItem } from '../components/CafeItem';
+import Header from '../components/Header';
+import NoList from '../components/NoList';
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { Props, StackParamList } from "../../navigation";
+import { MainProps, StackParamList } from "../../navigation";
 
 type HomeScreenProps = NativeStackScreenProps<StackParamList, "Main">
 
 
-const Main = ({navigation}: Props) => {
+const Main = ({navigation}: MainProps) => {
   const dispatch = useAppDispatch();
   const sessionID = useAppSelector(selectSessionID);
   const allCafeData = useAppSelector(selectCafeAll)
 
   const getAllCafeURL  = 'http://ci2.dextechnology.com:8000/api/Cafe/GetAll'
 
-  const authorization = (url: string) => { 
+  const getAllCafeData = (url: string) => { 
     return fetch(url, {
       method: "POST",
       headers: {
@@ -37,7 +37,7 @@ const Main = ({navigation}: Props) => {
     });
   };
 
-  const getData  = () => authorization(getAllCafeURL).then((data) => (dispatch(getAllCafe(data))));
+  const getData  = () => getAllCafeData(getAllCafeURL).then((data) => (dispatch(getAllCafe(data))));
   getData()
 
   return ( 

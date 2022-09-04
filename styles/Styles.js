@@ -90,7 +90,7 @@ const globalStyles = StyleSheet.create({
     width: '45%',
     height: 220,
     padding: 10,
-    marginBottom: 10
+    margin: 10
   },
 
   cafeDrinkTitle: {
@@ -126,8 +126,7 @@ const globalStyles = StyleSheet.create({
 
   productListContainer: {
     flexWrap: 'wrap',
-    flexDirection: 'row',
-    justifyContent: 'space-around'
+    flexDirection: 'column',
   },
 
   drinkFlag: {

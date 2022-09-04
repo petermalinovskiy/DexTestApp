@@ -1,13 +1,8 @@
 import React from "react";
 import { Image, StyleSheet, Text, View } from "react-native";
-import Header from "./header";
-
-
-interface NoListProps {
-  
-}
+import Header from "./Header";
  
-const NoList: React.FC<NoListProps> = () => {
+const NoList = () => {
   return ( 
     <View>
       <Header/>
