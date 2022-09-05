@@ -9,6 +9,8 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from "@react-navigation/native";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { useAppSelector } from "./src/app/hooks";
+import { selectSessionID } from "./src/app/reducers/loginReducer";
 
 export type StackParamList = {
   EnterScreen: undefined;
@@ -31,41 +33,47 @@ export type DrinkProfileScreenRouteProp = DrinkProps['route'];
 const Stack = createStackNavigator<StackParamList>();
 
 export default function Navigate() {
+  const sessionID = useAppSelector(selectSessionID);
   return (
     <SafeAreaProvider>
     <NavigationContainer>
       <Stack.Navigator >
-        <Stack.Screen
-          name="EnterScreen"
-          component={EnterScreen}
-          options={{headerShown: false}}
-        />
-        <Stack.Screen
-          name="Login"
-          component={Login}
-          options={{headerShown: false}}
-        />
+        {!sessionID ? (
+        <>
           <Stack.Screen
-          name="Registration"
-          component={Registration}
-          options={{headerShown: false}}
-        />
-        <Stack.Screen
-          name="Main"
-          component={Main}
-          options={{headerShown: false}}
-        />
-        <Stack.Screen
-          name="Cafe"
-          component={Cafe}
-          options={{headerShown: false}}
-        />
-        <Stack.Screen
-          name="Drink"
-          component={Drink}
-          options={{headerShown: false}}
-        />
-
+            name="EnterScreen"
+            component={EnterScreen}
+            options={{headerShown: false}}
+          />
+          <Stack.Screen
+            name="Login"
+            component={Login}
+            options={{headerShown: false}}
+          />
+            <Stack.Screen
+            name="Registration"
+            component={Registration}
+            options={{headerShown: false}}
+          />
+        </>
+        ) : (
+        <>        
+          <Stack.Screen
+            name="Main"
+            component={Main}
+            options={{headerShown: false}}
+          />
+          <Stack.Screen
+            name="Cafe"
+            component={Cafe}
+            options={{headerShown: false}}
+          />
+          <Stack.Screen
+            name="Drink"
+            component={Drink}
+            options={{headerShown: false}}
+          />
+        </>)} 
       </Stack.Navigator>
     </NavigationContainer>
     </SafeAreaProvider>

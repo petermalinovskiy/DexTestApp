@@ -6,7 +6,6 @@ import { useAppDispatch } from '../app/hooks';
 import { login, selectSessionID } from '../app/reducers/loginReducer';
 import { useAppSelector } from "../app/hooks";
 import { useNavigation } from '@react-navigation/native';
-import { ProfileScreenNavigationProp } from '../../navigation';
 
 interface ILoginFormProps {
 
@@ -19,7 +18,6 @@ const LoginForm: React.FC<ILoginFormProps> = () => {
   const dispatch = useAppDispatch();
 
   const sessionID = useAppSelector(selectSessionID);
-  const navigation = useNavigation<ProfileScreenNavigationProp>();
 
   const user = {
     email: emailInputValue,
@@ -50,8 +48,7 @@ const LoginForm: React.FC<ILoginFormProps> = () => {
     getAuthorized()
     .then(() => setEmailInputValue(''))
     .then(() => setPasswordInputValue(''))
-    .then(sessionID ? (() => navigation.navigate('Main')) : null) //подумать над вариантом получше
-  }
+  } 
   
   
 
