@@ -21,6 +21,9 @@ export type StackParamList = {
   Drink: {sessionID: string|undefined, productId: string};
 };
 
+export type RegistrationProps = NativeStackScreenProps<StackParamList, 'Registration'>;
+export type RegistrationProfileScreenNavigationProp = RegistrationProps['navigation'];
+
 export type MainProps = NativeStackScreenProps<StackParamList, 'Main'>;
 export type MainProfileScreenNavigationProp = MainProps['navigation'];
 

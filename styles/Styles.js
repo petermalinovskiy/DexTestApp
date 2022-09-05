@@ -136,7 +136,8 @@ const globalStyles = StyleSheet.create({
     width: 72,
     height: 40,
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+    zIndex: 2
   },
 
   drinkFlagText: {

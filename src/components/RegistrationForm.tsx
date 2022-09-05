@@ -3,7 +3,7 @@ import { Image, StatusBar, StyleSheet, Text, TextInput, TouchableOpacity, Keyboa
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { ERROR_RED } from '../../styles/stylesConstant';
 import { useNavigation } from '@react-navigation/native';
-import { ProfileScreenNavigationProp } from '../../navigation';
+import { RegistrationProfileScreenNavigationProp } from '../../navigation';
 
 interface IRegistrationFormProps {
 
@@ -17,7 +17,7 @@ const RegistrationForm: React.FC<IRegistrationFormProps> = () => {
   const [modalVisible, setModalVisible] = useState<boolean>(false)
   const [isResgistred, setIsResgistred] = useState<boolean>(false)
 
-  const navigation = useNavigation<ProfileScreenNavigationProp>();
+  const navigation = useNavigation<RegistrationProfileScreenNavigationProp>();
 
   const user = {
     email: emailInputValue,

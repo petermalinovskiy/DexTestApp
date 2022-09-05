@@ -3,12 +3,9 @@ import { Image, StatusBar, StyleSheet, Text, TextInput, TouchableOpacity, Keyboa
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { ERROR_RED } from '../../styles/stylesConstant';
 import { useAppDispatch } from '../app/hooks';
-import { login, selectSessionID } from '../app/reducers/loginReducer';
-import { useAppSelector } from "../app/hooks";
-import { useNavigation } from '@react-navigation/native';
+import { login } from '../app/reducers/loginReducer';
 
 interface ILoginFormProps {
-
 }
  
 const LoginForm: React.FC<ILoginFormProps> = () => {
@@ -16,8 +13,6 @@ const LoginForm: React.FC<ILoginFormProps> = () => {
   const [passwordInputValue, setPasswordInputValue] = useState<string>('')
   const [loginError, setLoginError] = useState<boolean>(false)
   const dispatch = useAppDispatch();
-
-  const sessionID = useAppSelector(selectSessionID);
 
   const user = {
     email: emailInputValue,
@@ -43,15 +38,12 @@ const LoginForm: React.FC<ILoginFormProps> = () => {
 
   const getAuthorized = () =>  authorization(authorizationURL).then((data) => (console.log(data), dispatch(login(data))));
 
-
   const authorizeHandler = () => {
     getAuthorized()
     .then(() => setEmailInputValue(''))
     .then(() => setPasswordInputValue(''))
   } 
   
-  
-
   return (
     <SafeAreaView style={styles.container} >
       {loginError ? <Text style={styles.loginError}>Неверный логин или пароль</Text> : null}

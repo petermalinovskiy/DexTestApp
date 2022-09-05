@@ -22,7 +22,7 @@ export const CafeItem: React.FC<CafeIremProps> = ({cafeData}) => {
   return (
     <TouchableWithoutFeedback key={cafeData.id} onPress={()=>navigation.navigate('Cafe', cafeData)}>
       <View style={globalStyles.cafeContainer} >
-        <Image source={{ uri: cafeData.images}} style={{height: '100%', width: '28%',}}/>
+        <Image source={cafeData.images ? {uri: cafeData.images } : require('../../assets/img/listCafe1.png')}  style={{height: '100%', width: '28%',}}/>
         <View style={globalStyles.cafeDescription}>
           <Text style={globalStyles.cafeName}>{cafeData.name}</Text>
           <Text style={globalStyles.cafeText}>Мы находимся:</Text>
