@@ -1,7 +1,6 @@
 import React from "react";
 import { View, ScrollView, ImageBackground, Text, Image } from "react-native";
 import LinearGradient from "react-native-linear-gradient";
-import Header from '../components/Header';
 import globalStyles from '../../styles/Styles';
 import DrinkItem from "../components/DrinkItem";
 import {cafeDrinkData} from '../features/data'
@@ -45,7 +44,6 @@ const Cafe = ({navigation, route}: CafeProps) => {
   
   return ( 
     <>
-      <Header/>
       <ImageBackground source={{uri: route.params.images}} resizeMode="cover" style={globalStyles.mainCafeImage}>
         <LinearGradient colors={["rgba(255,255,255, 0.03)", "rgba(0,0,0, 1)"]} locations={[0, 1]} style={globalStyles.cafeImageGradient}>
           <View>

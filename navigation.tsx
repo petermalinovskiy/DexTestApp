@@ -11,6 +11,8 @@ import { SafeAreaProvider } from "react-native-safe-area-context";
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { useAppSelector } from "./src/app/hooks";
 import { selectSessionID } from "./src/app/reducers/loginReducer";
+import Icon from 'react-native-vector-icons/FontAwesome'
+import { LITE_GREY, LOBSTER, WHITE } from "./styles/stylesConstant";
 
 export type StackParamList = {
   EnterScreen: undefined;
@@ -38,7 +40,6 @@ const Stack = createStackNavigator<StackParamList>();
 export default function Navigate() {
   const sessionID = useAppSelector(selectSessionID);
   return (
-    <SafeAreaProvider>
     <NavigationContainer>
       <Stack.Navigator >
         {!sessionID ? (
@@ -51,12 +52,22 @@ export default function Navigate() {
           <Stack.Screen
             name="Login"
             component={Login}
-            options={{headerShown: false}}
+            options={{
+              headerShown: true, 
+              title: '',
+              headerTransparent: true,
+              headerBackImage: ()=>(<Icon name="angle-left" color={WHITE} size={30} style={{marginLeft: 10}}/>)
+            }}
           />
             <Stack.Screen
             name="Registration"
             component={Registration}
-            options={{headerShown: false}}
+            options={{
+              headerShown: true, 
+              title: '',
+              headerTransparent: true,
+              headerBackImage: ()=>(<Icon name="angle-left" color={WHITE} size={30} style={{marginLeft: 10}}/>)
+            }}
           />
         </>
         ) : (
@@ -64,21 +75,53 @@ export default function Navigate() {
           <Stack.Screen
             name="Main"
             component={Main}
-            options={{headerShown: false}}
+            options={{
+              headerShown: true, 
+              title: 'CoffeTime', 
+              headerTitleAlign: 'center', 
+              headerTitleStyle: {
+                fontFamily: LOBSTER,
+                fontSize: 22,
+                color: LITE_GREY,
+                paddingTop: 10
+              },
+              headerBackImage: ()=>(null)
+            }}
           />
           <Stack.Screen
             name="Cafe"
             component={Cafe}
-            options={{headerShown: false}}
+            options={{
+              headerShown: true, 
+              title: 'CoffeTime', 
+              headerTitleAlign: 'center', 
+              headerTitleStyle: {
+                fontFamily: LOBSTER,
+                fontSize: 22,
+                color: LITE_GREY,
+                paddingTop: 10
+              },
+              headerBackImage: ()=>(<Icon name="angle-left" color={LITE_GREY} size={30} style={{marginLeft: 10}}/>)
+            }}
           />
           <Stack.Screen
             name="Drink"
             component={Drink}
-            options={{headerShown: false}}
+            options={{
+              headerShown: true, 
+              title: 'CoffeTime', 
+              headerTitleAlign: 'center', 
+              headerTitleStyle: {
+                fontFamily: LOBSTER,
+                fontSize: 22,
+                color: LITE_GREY,
+                paddingTop: 10,
+              },
+              headerBackImage: ()=>(<Icon name="angle-left" color={LITE_GREY} size={30} style={{marginLeft: 10}}/>)
+            }}
           />
         </>)} 
       </Stack.Navigator>
     </NavigationContainer>
-    </SafeAreaProvider>
   )
 }
