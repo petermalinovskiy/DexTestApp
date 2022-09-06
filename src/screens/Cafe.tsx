@@ -8,6 +8,7 @@ import { useAppDispatch, useAppSelector } from "../app/hooks";
 import { selectSessionID } from "../app/reducers/loginReducer";
 import { getAllCafeProduct, selectCafeProductAll } from "../app/reducers/cafeProductAllReducer";
 import { FlatList } from "react-native-gesture-handler";
+import { WHITE } from "../../styles/stylesConstant";
 
  
 export const Cafe = ({route}: CafeProps) => {
@@ -45,12 +46,12 @@ export const Cafe = ({route}: CafeProps) => {
         <LinearGradient colors={["rgba(255,255,255, 0.03)", "rgba(0,0,0, 1)"]} locations={[0, 1]} style={globalStyles.cafeImageGradient}>
           <View>
             <Text style={globalStyles.cafeTitle}>{route.params.name}</Text>
-            <Text style={globalStyles.cafeText}>{route.params.description}</Text>
-            <Text style={globalStyles.cafeText}>{route.params.address}</Text>
+            <Text style={[globalStyles.cafeText, {color: WHITE}]}>{route.params.description}</Text>
+            <Text style={[globalStyles.cafeText, {color: WHITE}]}>{route.params.address}</Text>
           </View>
         </LinearGradient>
       </ImageBackground>
-      <FlatList style={globalStyles.productListContainer}
+      <FlatList
           data={allCafeProductData}
           renderItem={({item}) => <DrinkItem drinkItemData={item}/>}
           keyExtractor={item => item.id}

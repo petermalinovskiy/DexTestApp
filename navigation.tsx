@@ -11,7 +11,8 @@ import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { useAppSelector } from "./src/app/hooks";
 import { selectSessionID } from "./src/app/reducers/loginReducer";
 import Icon from 'react-native-vector-icons/FontAwesome'
-import { BLUE, LIGHT_GREEN, LITE_GREY, LOBSTER, WHITE } from "./styles/stylesConstant";
+import { BLUE, LITE_GREY, LOBSTER} from "./styles/stylesConstant";
+import { Favorite } from "./src/screens/Favorite";
 
 export type StackParamList = {
   EnterScreen: undefined;
@@ -21,6 +22,7 @@ export type StackParamList = {
   Cafe: {id: string, name: string, address: string, coordinates: string, description: string, images: string,};
   Drink: {sessionID: string|undefined, productId: string};
   Root: undefined;
+  Favorite: undefined
 };
 
 export type RegistrationProps = NativeStackScreenProps<StackParamList, 'Registration'>;
@@ -34,6 +36,9 @@ export type CafeProfileScreenNavigationProp = CafeProps['navigation'];
 
 export type DrinkProps = NativeStackScreenProps<StackParamList, 'Drink'>;
 export type DrinkProfileScreenRouteProp = DrinkProps['route'];
+
+export type FavoriteProps = NativeStackScreenProps<StackParamList, 'Favorite'>;
+export type FavoriteProfileScreenRouteProp = FavoriteProps['route'];
 
 const Stack = createStackNavigator<StackParamList>();
 
@@ -107,6 +112,22 @@ export default function Navigate() {
           <Stack.Screen
             name="Drink"
             component={Drink}
+            options={{
+              headerShown: true, 
+              title: 'CoffeTime', 
+              headerTitleAlign: 'center', 
+              headerTitleStyle: {
+                fontFamily: LOBSTER,
+                fontSize: 22,
+                color: LITE_GREY,
+                paddingTop: 10,
+              },
+              headerBackImage: ()=>(<Icon name="angle-left" color={LITE_GREY} size={30} style={{marginLeft: 10}}/>)
+            }}
+          />
+          <Stack.Screen
+            name="Favorite"
+            component={Favorite}
             options={{
               headerShown: true, 
               title: 'CoffeTime', 

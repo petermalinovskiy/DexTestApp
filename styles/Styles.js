@@ -106,7 +106,7 @@ const globalStyles = StyleSheet.create({
     paddingLeft: 25,
     justifyContent: 'center',
     shadowRadius: 4,
-    shadowColor: '#000000'
+    shadowColor: BLACK
   },
 
   cafeTitle: {
@@ -225,8 +225,6 @@ const globalStyles = StyleSheet.create({
     fontFamily: DISPLAY_REGULAR,
     fontSize: 20,
   },
-
-
 
 })
 

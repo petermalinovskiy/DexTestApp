@@ -23,7 +23,7 @@ type ProductData = {
   imagesPath: string
 }
  
-export const Drink = ({route}: DrinkProps) => {
+export const Drink = ({navigation, route}: DrinkProps) => {
   const [productData, setProductData] = useState<ProductData|null>(null) 
 
   const myProduct = {
@@ -67,7 +67,7 @@ export const Drink = ({route}: DrinkProps) => {
             <Image source={require('../../assets/img/rubleBig.png')}/>
           </View>
           <Pressable 
-            style={({ pressed }) => [{ backgroundColor: pressed ? '#B3C29C' : '#C8D9AF'}, globalStyles.buyButton]}>
+            style={({ pressed }) => [{ backgroundColor: pressed ? '#B3C29C' : '#C8D9AF'}, globalStyles.buyButton]} onPress={() => navigation.navigate('Favorite')}>
             <Text style={globalStyles.buttonText}>заказать</Text>
           </Pressable>
         </View>
