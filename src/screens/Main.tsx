@@ -1,22 +1,13 @@
 import React from 'react';
-import {
-  StyleSheet,
-  View
-} from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
 import { useAppDispatch, useAppSelector } from '../app/hooks';
 import { getAllCafe, selectCafeAll } from '../app/reducers/cafeAllReducer';
 import { selectSessionID } from '../app/reducers/loginReducer';
 import { CafeItem } from '../components/CafeItem';
-import NoList from '../components/NoList';
-import type { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { MainProps, StackParamList } from "../../navigation";
+import { NoList } from '../components/NoList';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-type HomeScreenProps = NativeStackScreenProps<StackParamList, "Main">
-
-
-const Main = ({navigation}: MainProps) => {
+const Main = () => {
   const dispatch = useAppDispatch();
   const sessionID = useAppSelector(selectSessionID);
   const allCafeData = useAppSelector(selectCafeAll)
@@ -41,7 +32,7 @@ const Main = ({navigation}: MainProps) => {
   getData()
 
   return ( 
-    <SafeAreaView>
+    <SafeAreaView style={{flex: 1}}>
     {(allCafeData.length > 0)  ? (
       <FlatList
         data={allCafeData}
@@ -52,9 +43,5 @@ const Main = ({navigation}: MainProps) => {
     </SafeAreaView>
   );
 }
- 
-const styles = StyleSheet.create({
-  
-});
 
 export default Main;

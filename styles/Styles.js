@@ -1,28 +1,96 @@
 import React from "react";
 import { StyleSheet } from "react-native";
+import { DISPLAY_REGULAR, DISPLAY_BOLD, ERROR_RED, LITE_GREY, LOBSTER, WHITE, GREY, LIGHT_GREEN, DISPLAY_LIGHT, BLACK } from "./stylesConstant";
 
 const globalStyles = StyleSheet.create({
-  headerText: {
-    color: '#474747',
-    fontSize: 22,
-    fontFamily: 'Lobster-Regular',
+  loginButton: {
+    height: 52,
+    alignSelf: 'center',
+    alignItems: 'center',
+    width: '80%',
+    borderRadius: 26,    
+    justifyContent: 'center',
+    marginBottom: 20
   },
 
-  bgImage: {
+  loginButtonText: {
+    fontFamily: DISPLAY_REGULAR,
+    fontSize: 18,
+    color: WHITE
+  },
+
+  spaceAround: {
     flex: 1,
     justifyContent: 'space-around',
   },
 
   loginText: {
-    fontFamily: 'Lobster-Regular',
+    fontFamily: LOBSTER,
     fontSize: 64, 
-    color: '#FFFFFF', 
+    color: WHITE, 
     textAlign: 'center'
   },
 
-  gradient: {
+  inputView: {
+    borderBottomWidth: 1,
+    borderColor: WHITE,
+    width: "80%",
+    height: 45,
+    marginBottom: 20,
+    alignSelf: 'center',
+  },
+
+  TextInput: {
+    height: 50,
     flex: 1,
-    justifyContent: 'space-around',
+    padding: 10,
+    color: LITE_GREY,
+  },
+
+  loginError: {
+    color: WHITE,
+    fontFamily: DISPLAY_BOLD,
+    fontSize: 18,
+    backgroundColor: ERROR_RED,
+    borderRadius: 10,
+    paddingHorizontal: 10
+  },
+
+  errorInputView: {
+    borderColor: ERROR_RED,
+    color: ERROR_RED
+  },
+
+  modal: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    paddingHorizontal: 50,
+    paddingVertical: 200,
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+  },
+
+  modalBlock: {
+    flex: 1,
+    height: '100%',
+    justifyContent: 'space-between',
+    backgroundColor: WHITE,
+    borderRadius: 20,
+    padding: 65,
+    alignItems: "center",
+    shadowColor: WHITE,
+    shadowOffset: {
+      width: 20,
+      height: 20,
+    },
+    shadowOpacity: 1,
+    shadowRadius: 40
+  },
+
+  Modalitle: {
+    fontFamily: DISPLAY_REGULAR,
+    fontSize: 16,
+    color: GREY
   },
 
   cafeContainer: {
@@ -41,23 +109,23 @@ const globalStyles = StyleSheet.create({
     shadowColor: '#000000'
   },
 
-  cafeName: {
-    fontFamily: 'SF-UI-Display-Bold',
+  cafeTitle: {
+    fontFamily: DISPLAY_BOLD,
     fontSize: 20,
-    color: '#C8D9AF',
+    color: LIGHT_GREEN,
     marginBottom: 10
   },
 
-  cafeText: {
-    fontFamily: 'SF-UI-Display-Light',
+  cafeSubText: {
+    fontFamily: DISPLAY_LIGHT,
     fontSize: 14,
-    color: '#717171'
+    color: GREY
   },
 
-  cafeAdress: {
-    fontFamily: 'SF-UI-Display-Regular',
+  cafeText: {
+    fontFamily: DISPLAY_REGULAR,
     fontSize: 16,
-    color: '#717171'
+    color: GREY
   },
 
   mainCafeImage: {
@@ -72,21 +140,9 @@ const globalStyles = StyleSheet.create({
     paddingLeft: 15
   },
 
-  cafeName: {
-    fontFamily: 'Lobster-Regular',
-    fontSize: 28,
-    color: '#474747'
-  },
-
-  cafeAdress: {
-    fontFamily: 'SF-UI-Display-Regular',
-    fontSize: 18,
-    color: '#717171'
-  },
-
   cafeDrinkContainer: {
     justifyContent: 'space-between',
-    backgroundColor: '#ffffff',
+    backgroundColor: WHITE,
     width: '45%',
     height: 220,
     padding: 10,
@@ -94,44 +150,22 @@ const globalStyles = StyleSheet.create({
   },
 
   cafeDrinkTitle: {
-    fontFamily: 'SF-UI-Display-Bold',
+    fontFamily: DISPLAY_BOLD,
     fontSize: 16,
-    color: '#717171',
-  },
-  
-  cafeDrinkSubtitle: {
-    fontFamily: 'SF-UI-Display-Regular',
-    fontSize: 12,
-    color: '#717171',
-  },
-
-  cafeDrinkFooter: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center'
-  },
-
-  cafeDrinkPriiceContainer: {
-    flexDirection: 'row',
-    alignItems: 'center'
+    color: GREY,
   },
 
   cafeDrinkPriice: {
-    fontFamily: 'Lobster-Regular',
+    fontFamily: LOBSTER,
     fontSize: 24,
-    color: '#C8D9AF',
+    color: LIGHT_GREEN,
     marginRight: 5,
     marginBottom: -5
   },
 
-  productListContainer: {
-    flexWrap: 'wrap',
-    flexDirection: 'column',
-  },
-
   drinkFlag: {
     position: 'absolute',
-    top: 75,
+    top: 20,
     left: 0,
     width: 72,
     height: 40,
@@ -140,39 +174,16 @@ const globalStyles = StyleSheet.create({
     zIndex: 2
   },
 
-  drinkFlagText: {
-    fontFamily: 'SF-UI-Display-Regular',
-    color: '#ffffff',
-    fontSize: 16,
-    marginRight: 16
-  },
-
-  drinkContainer:{
-    flex: 1,
-    justifyContent: 'space-around',
-    paddingHorizontal: 20,
-  },
-
-  drinkCardImage: {
-    alignSelf: 'center',
-  },
-
   containerRow: {
     flexDirection: 'row',
     alignItems: 'center',  
   },
 
   drinkCardName: {
-    fontFamily: 'Lobster-Regular',
+    fontFamily: LOBSTER,
     fontSize: 24,
-    color: '#373737',
+    color: BLACK,
     marginRight: 10
-  },
-
-  drinkCardDescription: {
-    fontFamily: 'SF-UI-Display-Regular',
-    fontSize: 16,
-    color: '#474747'
   },
 
   iconContainer: {
@@ -185,9 +196,9 @@ const globalStyles = StyleSheet.create({
   },
 
   iconText: {
-    fontFamily: 'SF-UI-Display-Light',
+    fontFamily: DISPLAY_LIGHT,
     fontSize: 10,
-    color: '#474747',
+    color: LITE_GREY,
     textAlign: 'center'
   },
 
@@ -196,9 +207,9 @@ const globalStyles = StyleSheet.create({
   },
 
   drinkPrice: {
-    fontFamily: 'SF-UI-Display-Regular',
+    fontFamily: DISPLAY_REGULAR,
     fontSize: 28,
-    color: '#5E5E5E',
+    color: GREY,
     marginRight: 15,
   },
 
@@ -210,46 +221,12 @@ const globalStyles = StyleSheet.create({
   },
 
   buttonText: {
-    color: '#ffffff',
-    fontFamily: 'SF-UI-Display-Regular',
+    color: WHITE,
+    fontFamily: DISPLAY_REGULAR,
     fontSize: 20,
   },
 
-  cafeContainer: {
-    flexDirection: 'row',
-    marginVertical: 5,
-    height: 126,
-    backgroundColor: '#ffffff'
-  },
 
-  cafeDescription: {
-    flex: 1,
-    flexDirection: 'column',
-    paddingLeft: 25,
-    justifyContent: 'center',
-    shadowRadius: 4,
-    shadowColor: '#000000'
-
-  },
-
-  cafeName: {
-    fontFamily: 'SF-UI-Display-Bold',
-    fontSize: 20,
-    color: '#C8D9AF',
-    marginBottom: 10
-  },
-
-  cafeText: {
-    fontFamily: 'SF-UI-Display-Light',
-    fontSize: 14,
-    color: '#717171'
-  },
-
-  cafeAdress: {
-    fontFamily: 'SF-UI-Display-Regular',
-    fontSize: 16,
-    color: '#717171'
-  },
 
 })
 

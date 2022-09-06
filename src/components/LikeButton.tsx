@@ -10,7 +10,7 @@ interface LikeButtonProps {
   size: number|undefined
 }
  
-const LikeButton: React.FC<LikeButtonProps> = ({favorite, id, size}) => {
+export const LikeButton: React.FC<LikeButtonProps> = ({favorite, id, size}) => {
   const favoriteTrue = <Icon name="heart" size={size} color={LIKE_RED} onPress={() => unSetFavorite()}/>
   const favoriteFalse = <Icon name="heart-o" size={size} color={LIKE_RED} onPress={() => setFavorite()} />
 
@@ -50,5 +50,3 @@ const LikeButton: React.FC<LikeButtonProps> = ({favorite, id, size}) => {
    
    );
 }
- 
-export default LikeButton;

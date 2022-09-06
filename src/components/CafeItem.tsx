@@ -24,9 +24,9 @@ export const CafeItem: React.FC<CafeIremProps> = ({cafeData}) => {
       <View style={globalStyles.cafeContainer} >
         <Image source={cafeData.images ? {uri: cafeData.images } : require('../../assets/img/listCafe1.png')}  style={{height: '100%', width: '28%',}}/>
         <View style={globalStyles.cafeDescription}>
-          <Text style={globalStyles.cafeName}>{cafeData.name}</Text>
-          <Text style={globalStyles.cafeText}>Мы находимся:</Text>
-          <Text style={globalStyles.cafeAdress}>{cafeData.address}</Text>
+          <Text style={globalStyles.cafeTitle}>{cafeData.name}</Text>
+          <Text style={globalStyles.cafeSubText}>Мы находимся:</Text>
+          <Text style={globalStyles.cafeText}>{cafeData.address}</Text>
         </View>
       </View>
     </TouchableWithoutFeedback>

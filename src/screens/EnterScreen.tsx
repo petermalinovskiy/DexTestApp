@@ -1,38 +1,36 @@
 import React from "react";
 import {
-  StyleSheet,
   View,
   Text,
   ImageBackground,
-  TouchableWithoutFeedback,
-  Image
+  TouchableWithoutFeedback
 } from 'react-native';
 import LinearGradient from "react-native-linear-gradient";
 import { SafeAreaView } from "react-native-safe-area-context";
 import globalStyles from '../../styles/Styles';
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { StackParamList } from "../../navigation";
+import { BLUE, LIGHT_GREEN } from "../../styles/stylesConstant";
 
 type HomeScreenProps = NativeStackScreenProps<StackParamList, "EnterScreen">
 
-const EnterScreen: React.FC<HomeScreenProps> = ({navigation}) => {
+export const EnterScreen: React.FC<HomeScreenProps> = ({navigation}) => {
   return ( 
     <SafeAreaView style={{flex: 1}}>
-      <ImageBackground source={require('../../assets/img/logoBackGround.png')} resizeMode='cover' style={globalStyles.bgImage}>
-        <LinearGradient colors={["rgba(0,0,0, 0.1)", "rgba(243,233,216, 0.79)"]} style={globalStyles.gradient}>
+      <ImageBackground source={require('../../assets/img/logoBackGround.png')} resizeMode='cover' style={globalStyles.spaceAround}>
+        <LinearGradient colors={["rgba(0,0,0, 0.1)", "rgba(243,233,216, 0.79)"]} style={globalStyles.spaceAround}>
           <Text style={globalStyles.loginText}>CoffeTime</Text>
           <View>
-            <View style={styles.registration}>
+            <View style={[globalStyles.loginButton, {backgroundColor: BLUE}]}>
               <TouchableWithoutFeedback onPress={() => navigation.navigate('Login')}>
-                <View style={styles.buttonContainer}>              
-                  <Image style={styles.icon} resizeMode='contain' source={require('../../assets/img/facebookIcon.png')}/>
-                  <Text style={styles.loginButton}>Войти через Facebook</Text>
+                <View style={globalStyles.containerRow}>              
+                  <Text style={globalStyles.loginButtonText}>Войти</Text>
                 </View>
               </TouchableWithoutFeedback>  
             </View>
-            <View style={[styles.registration, {backgroundColor: '#C8D9AF'}]}>
+            <View style={[globalStyles.loginButton, {backgroundColor: LIGHT_GREEN}]}>
               <TouchableWithoutFeedback onPress={() => navigation.navigate('Registration')}>
-                <Text style={styles.loginButton}>Зарегистрироваться</Text>
+                <Text style={globalStyles.loginButtonText}>Зарегистрироваться</Text>
               </TouchableWithoutFeedback>  
             </View>
           </View>
@@ -41,37 +39,5 @@ const EnterScreen: React.FC<HomeScreenProps> = ({navigation}) => {
     </SafeAreaView> 
    );
 }
-
-const styles = StyleSheet.create({
-  registration: {
-    height: 52,
-    alignSelf: 'center',
-    alignItems: 'center',
-    width: '80%',
-    borderRadius: 26,    
-    justifyContent: 'center',
-    backgroundColor: '#3B5998',
-    marginBottom: 20
-  },
-  buttonContainer: {
-    flex: 1,
-    flexDirection: 'row',
-    alignItems: 'center',
-    
-  },
-
-  loginButton: {
-    fontFamily: 'SF-UI-Display-Regular',
-    fontSize: 18,
-    color: '#FFFFFF'
-  },
-
-  icon: {
-    width: 25,
-    height: 25,
-    marginRight: 20
-  },
-});
  
-export default EnterScreen;
 

@@ -3,9 +3,9 @@ import React from "react";
 import { Image, Text, TouchableWithoutFeedback, View } from "react-native";
 import { CafeProfileScreenNavigationProp } from "../../navigation";
 import globalStyles from '../../styles/Styles';
-import { useAppDispatch, useAppSelector } from "../app/hooks";
+import { useAppSelector } from "../app/hooks";
 import { selectSessionID } from "../app/reducers/loginReducer";
-import LikeButton from "./LikeButton";
+import { LikeButton } from "./LikeButton";
 
 interface DrinkCardProps {
   children?: React.ReactNode,
@@ -19,7 +19,7 @@ interface DrinkCardProps {
   }
 }
  
-const DrinkItem: React.FC<DrinkCardProps> = ({drinkItemData}) => {
+export const DrinkItem: React.FC<DrinkCardProps> = ({drinkItemData}) => {
   const navigation = useNavigation<CafeProfileScreenNavigationProp>();
   const sessionID = useAppSelector(selectSessionID);
 
@@ -32,10 +32,10 @@ const DrinkItem: React.FC<DrinkCardProps> = ({drinkItemData}) => {
     <TouchableWithoutFeedback onPress={() => navigation.navigate('Drink', myProduct)}>
       <View  style={globalStyles.cafeDrinkContainer}>
         <Text style={globalStyles.cafeDrinkTitle}>{drinkItemData.name}</Text>
-        <Text style={globalStyles.cafeDrinkSubtitle}>кофейный напиток</Text>
+        <Text style={[globalStyles.cafeText, {fontSize: 12}]}>кофейный напиток</Text>
         <Image source={{uri: drinkItemData.imagesPath}} style={{height: 100, width: '100%',}}/>
-        <View style={globalStyles.cafeDrinkFooter}>
-          <View style={globalStyles.cafeDrinkPriiceContainer}>
+        <View style={[globalStyles.containerRow, {justifyContent: 'space-between'}]}>
+          <View style={globalStyles.containerRow}>
             <Text style={globalStyles.cafeDrinkPriice}>{drinkItemData.price}</Text>
             <Image source={require('../../assets/img/ruble.png')}/>
           </View>      
@@ -46,5 +46,3 @@ const DrinkItem: React.FC<DrinkCardProps> = ({drinkItemData}) => {
 
   );
 }
- 
-export default DrinkItem;

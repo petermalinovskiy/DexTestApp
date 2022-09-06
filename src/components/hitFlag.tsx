@@ -1,14 +1,13 @@
 import React from "react";
 import { ImageBackground, Text } from "react-native";
 import globalStyles from '../../styles/Styles'
+import { WHITE } from "../../styles/stylesConstant";
 
  
-const HitFlag: React.FC = () => {
+export const HitFlag: React.FC = () => {
   return ( 
     <ImageBackground source={require('../../assets/img/drinkSaleeIcon.png')} resizeMode="cover" style={globalStyles.drinkFlag}>
-    <Text style={globalStyles.drinkFlagText}>Хит</Text>
+    <Text style={[globalStyles.cafeText, {color: WHITE, marginRight: 16 }]}>Хит</Text>
   </ImageBackground>
    );
 }
- 
-export default HitFlag;

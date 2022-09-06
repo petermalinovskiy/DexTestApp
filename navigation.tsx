@@ -1,18 +1,17 @@
 import React from "react";
 import Main from "./src/screens/Main";
-import EnterScreen from "./src/screens/EnterScreen";
-import Login from "./src/screens/Login";
-import Registration from "./src/screens/Registration";
-import Cafe from "./src/screens/Cafe";
-import Drink from "./src/screens/Drink";
+import { EnterScreen } from "./src/screens/EnterScreen";
+import { Login } from "./src/screens/Login";
+import { Registration } from "./src/screens/Registration";
+import { Cafe } from "./src/screens/Cafe";
+import { Drink } from "./src/screens/Drink";
 import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from "@react-navigation/native";
-import { SafeAreaProvider } from "react-native-safe-area-context";
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { useAppSelector } from "./src/app/hooks";
 import { selectSessionID } from "./src/app/reducers/loginReducer";
 import Icon from 'react-native-vector-icons/FontAwesome'
-import { LITE_GREY, LOBSTER, WHITE } from "./styles/stylesConstant";
+import { BLUE, LIGHT_GREEN, LITE_GREY, LOBSTER, WHITE } from "./styles/stylesConstant";
 
 export type StackParamList = {
   EnterScreen: undefined;
@@ -21,6 +20,7 @@ export type StackParamList = {
   Main: undefined;
   Cafe: {id: string, name: string, address: string, coordinates: string, description: string, images: string,};
   Drink: {sessionID: string|undefined, productId: string};
+  Root: undefined;
 };
 
 export type RegistrationProps = NativeStackScreenProps<StackParamList, 'Registration'>;
@@ -56,7 +56,7 @@ export default function Navigate() {
               headerShown: true, 
               title: '',
               headerTransparent: true,
-              headerBackImage: ()=>(<Icon name="angle-left" color={WHITE} size={30} style={{marginLeft: 10}}/>)
+              headerBackImage: ()=>(<Icon name="angle-left" color={BLUE} size={30} style={{marginLeft: 10}}/>)
             }}
           />
             <Stack.Screen
@@ -66,12 +66,12 @@ export default function Navigate() {
               headerShown: true, 
               title: '',
               headerTransparent: true,
-              headerBackImage: ()=>(<Icon name="angle-left" color={WHITE} size={30} style={{marginLeft: 10}}/>)
+              headerBackImage: ()=>(<Icon name="angle-left" color={BLUE} size={30} style={{marginLeft: 10}}/>)
             }}
           />
         </>
         ) : (
-        <>        
+        <>       
           <Stack.Screen
             name="Main"
             component={Main}

@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { Image, Pressable, Text, View } from "react-native";
 import globalStyles from '../../styles/Styles'
-import HitFlag from "../components/HitFlag";
+import { HitFlag } from "../components/HitFlag";
 import DrinkIcons from "../components/DrinkIcons";
 import { DrinkProps } from "../../navigation";
-import LikeButton from "../components/LikeButton";
+import { LikeButton } from "../components/LikeButton";
 
 type ProductData = {
   id: string,
@@ -23,7 +23,7 @@ type ProductData = {
   imagesPath: string
 }
  
-const Drink = ({route}: DrinkProps) => {
+export const Drink = ({route}: DrinkProps) => {
   const [productData, setProductData] = useState<ProductData|null>(null) 
 
   const myProduct = {
@@ -53,14 +53,14 @@ const Drink = ({route}: DrinkProps) => {
   return ( 
     <View style={{flex: 1}}>
       <HitFlag/>
-      <View style={globalStyles.drinkContainer}>
+      <View style={[globalStyles.spaceAround, {paddingHorizontal: 20,}]}>
         <Image source={{uri: productData?.imagesPath}} style={{width: '100%', height: '40%'}}/>
         <View style={globalStyles.containerRow}>
           <Text style={globalStyles.drinkCardName}>{productData?.productName}</Text>
           <LikeButton id={productData?.id} favorite={productData?.favarite} size={22}/>
         </View>
         <DrinkIcons/>
-        <Text style={globalStyles.drinkCardDescription}>{productData?.cofeName}</Text> 
+        <Text style={globalStyles.cafeText}>{productData?.cofeName}</Text> 
         <View style={[globalStyles.containerRow, {justifyContent: 'space-between'}]}>
           <View style={globalStyles.containerRow}>
             <Text style={globalStyles.drinkPrice}>{productData?.price}</Text>
@@ -75,8 +75,4 @@ const Drink = ({route}: DrinkProps) => {
     </View>    
    );
 }
-
-
-
-export default Drink;
 

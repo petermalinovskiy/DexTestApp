@@ -1,19 +1,16 @@
 import React from "react";
-import { View, ScrollView, ImageBackground, Text, Image } from "react-native";
+import { View,  ImageBackground, Text } from "react-native";
 import LinearGradient from "react-native-linear-gradient";
 import globalStyles from '../../styles/Styles';
-import DrinkItem from "../components/DrinkItem";
-import {cafeDrinkData} from '../features/data'
-import type { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { CafeProps, StackParamList } from "../../navigation";
+import { DrinkItem } from "../components/DrinkItem";
+import { CafeProps} from "../../navigation";
 import { useAppDispatch, useAppSelector } from "../app/hooks";
 import { selectSessionID } from "../app/reducers/loginReducer";
 import { getAllCafeProduct, selectCafeProductAll } from "../app/reducers/cafeProductAllReducer";
 import { FlatList } from "react-native-gesture-handler";
-import { SafeAreaView } from "react-native-safe-area-context";
 
  
-const Cafe = ({navigation, route}: CafeProps) => {
+export const Cafe = ({route}: CafeProps) => {
   const dispatch = useAppDispatch();
   const allCafeProductData = useAppSelector(selectCafeProductAll)
   const sessionID = useAppSelector(selectSessionID);
@@ -47,9 +44,9 @@ const Cafe = ({navigation, route}: CafeProps) => {
       <ImageBackground source={{uri: route.params.images}} resizeMode="cover" style={globalStyles.mainCafeImage}>
         <LinearGradient colors={["rgba(255,255,255, 0.03)", "rgba(0,0,0, 1)"]} locations={[0, 1]} style={globalStyles.cafeImageGradient}>
           <View>
-            <Text style={globalStyles.cafeName}>{route.params.name}</Text>
-            <Text style={globalStyles.cafeAdress}>{route.params.description}</Text>
-            <Text style={globalStyles.cafeAdress}>{route.params.address}</Text>
+            <Text style={globalStyles.cafeTitle}>{route.params.name}</Text>
+            <Text style={globalStyles.cafeText}>{route.params.description}</Text>
+            <Text style={globalStyles.cafeText}>{route.params.address}</Text>
           </View>
         </LinearGradient>
       </ImageBackground>
@@ -62,6 +59,3 @@ const Cafe = ({navigation, route}: CafeProps) => {
     </>
    );
 }
-
-
-export default Cafe;
