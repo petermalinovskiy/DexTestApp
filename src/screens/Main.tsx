@@ -8,7 +8,8 @@ import { NoList } from '../components/NoList';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Icon from 'react-native-vector-icons/FontAwesome'
 import { BLACK, LIGHT_GREEN } from '../../styles/stylesConstant';
-import { StyleSheet, TouchableWithoutFeedback, View } from 'react-native';
+import { TouchableWithoutFeedback, View } from 'react-native';
+import globalStyles from '../../styles/Styles';
 
 const Main = () => {
   const dispatch = useAppDispatch();
@@ -38,20 +39,20 @@ const Main = () => {
 
   return ( 
     <SafeAreaView style={{flex: 1}}>
-      <View style={styles.mapToggle}>
+      <View style={globalStyles.mapToggle}>
         <TouchableWithoutFeedback  onPress={() => !mapToggle ? setMapToggle(true) : null}>
           <Icon
             name="map-marker" 
             size={25} 
             color={BLACK} 
-            style={[styles.mapToggleButton, (mapToggle ? {backgroundColor: LIGHT_GREEN} : null)]}
+            style={[globalStyles.mapToggleButton, (mapToggle ? {backgroundColor: LIGHT_GREEN} : null)]}
           />
         </TouchableWithoutFeedback>
         <TouchableWithoutFeedback onPress={() => mapToggle ? setMapToggle(false) : null}>
           <Icon
             name="list" size={25} 
             color={BLACK} 
-            style={[styles.mapToggleButton, (!mapToggle ? {backgroundColor: LIGHT_GREEN} : null)]}
+            style={[globalStyles.mapToggleButton, (!mapToggle ? {backgroundColor: LIGHT_GREEN} : null)]}
             
           />          
         </TouchableWithoutFeedback>
@@ -73,26 +74,3 @@ const Main = () => {
 
 export default Main;
 
-const styles = StyleSheet.create({
-  mapToggle: {
-    marginTop: 5,
-    flexDirection: 'row',
-    width: '40%',
-    justifyContent: 'space-around',
-    alignSelf: 'center',
-    minHeight: 35,
-    padding: 5,
-    borderRadius: 25,
-    borderColor: LIGHT_GREEN,
-    borderWidth: 2
-  },
-
-  mapToggleButton: {
-    minWidth: '15%',
-    height: 35,
-    borderRadius: 25,
-    alignSelf: 'center',
-    paddingTop: 5,
-    paddingHorizontal: 20
-  }
-})

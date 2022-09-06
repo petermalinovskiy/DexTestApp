@@ -226,6 +226,28 @@ const globalStyles = StyleSheet.create({
     fontSize: 20,
   },
 
+  mapToggle: {
+    marginTop: 5,
+    flexDirection: 'row',
+    width: '40%',
+    justifyContent: 'space-around',
+    alignSelf: 'center',
+    minHeight: 35,
+    padding: 5,
+    borderRadius: 25,
+    borderColor: LIGHT_GREEN,
+    borderWidth: 2
+  },
+
+  mapToggleButton: {
+    minWidth: '15%',
+    height: 35,
+    borderRadius: 25,
+    alignSelf: 'center',
+    paddingTop: 5,
+    paddingHorizontal: 20
+  }
+
 })
 
 export default globalStyles

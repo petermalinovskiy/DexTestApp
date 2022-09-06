@@ -1,5 +1,5 @@
-import React from "react";
-import { View,  ImageBackground, Text } from "react-native";
+import React, { useEffect } from "react";
+import { View,  ImageBackground, Text, BackHandler } from "react-native";
 import LinearGradient from "react-native-linear-gradient";
 import globalStyles from '../../styles/Styles';
 import { DrinkItem } from "../components/DrinkItem";
@@ -11,10 +11,25 @@ import { FlatList } from "react-native-gesture-handler";
 import { WHITE } from "../../styles/stylesConstant";
 
  
-export const Cafe = ({route}: CafeProps) => {
+export const Cafe = ({navigation, route}: CafeProps) => {
   const dispatch = useAppDispatch();
   const allCafeProductData = useAppSelector(selectCafeProductAll)
   const sessionID = useAppSelector(selectSessionID);
+  useEffect(() => {
+    const backAction = () => {
+      if (true) navigation.goBack() 
+
+      return true;
+    };
+
+    const backHandler = BackHandler.addEventListener(
+      "hardwareBackPress",
+      backAction
+    );
+
+    return () => backHandler.remove();
+  }, []);
+
 
   const cafeID = {
     sessionID: sessionID,
@@ -39,7 +54,8 @@ export const Cafe = ({route}: CafeProps) => {
 
   const getData  = () => getCafeData(getCafeURL).then((data) => (dispatch(getAllCafeProduct(data))));
   getData()
-  
+
+
   return ( 
     <>
       <ImageBackground source={{uri: route.params.images}} resizeMode="cover" style={globalStyles.mainCafeImage}>

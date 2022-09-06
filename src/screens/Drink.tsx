@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Image, Pressable, Text, View } from "react-native";
 import globalStyles from '../../styles/Styles'
-import { HitFlag } from "../components/HitFlag";
+import { TopSaleFlag } from "../components/TopSaleFlag";
 import DrinkIcons from "../components/DrinkIcons";
 import { DrinkProps } from "../../navigation";
 import { LikeButton } from "../components/LikeButton";
@@ -52,7 +52,7 @@ export const Drink = ({navigation, route}: DrinkProps) => {
 
   return ( 
     <View style={{flex: 1}}>
-      <HitFlag/>
+      <TopSaleFlag/>
       <View style={[globalStyles.spaceAround, {paddingHorizontal: 20,}]}>
         <Image source={{uri: productData?.imagesPath}} style={{width: '100%', height: '40%'}}/>
         <View style={globalStyles.containerRow}>

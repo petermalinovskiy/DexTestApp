@@ -8,12 +8,9 @@ import LinearGradient from "react-native-linear-gradient";
 import { SafeAreaView } from "react-native-safe-area-context";
 import globalStyles from '../../styles/Styles'
 import { RegistrationForm } from "../components/RegistrationForm";
-import type { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { StackParamList } from "../../navigation";
 
-type HomeScreenProps = NativeStackScreenProps<StackParamList, "Registration">
 
-export const Registration: React.FC<HomeScreenProps> = () => {
+export const Registration = () => {
 
 
   return ( 
