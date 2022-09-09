@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { View,  ImageBackground, Text, BackHandler } from "react-native";
+import { View,  ImageBackground, Text, BackHandler, FlatList } from "react-native";
 import LinearGradient from "react-native-linear-gradient";
 import globalStyles from '../../styles/Styles';
 import { DrinkItem } from "../components/DrinkItem";
@@ -7,7 +7,7 @@ import { CafeProps} from "../../navigation";
 import { useAppDispatch, useAppSelector } from "../app/hooks";
 import { selectSessionID } from "../app/reducers/loginReducer";
 import { getAllCafeProduct, selectCafeProductAll } from "../app/reducers/cafeProductAllReducer";
-import { FlatList } from "react-native-gesture-handler";
+
 import { WHITE } from "../../styles/stylesConstant";
 
  
@@ -33,7 +33,7 @@ export const Cafe = ({navigation, route}: CafeProps) => {
 
   const cafeID = {
     sessionID: sessionID,
-    cafeId: route.params.id
+    cafeId: route.params?.id
   }
 
   const getCafeURL  = 'http://ci2.dextechnology.com:8000/api/Product/GetProductsCafe'
@@ -58,12 +58,12 @@ export const Cafe = ({navigation, route}: CafeProps) => {
 
   return ( 
     <>
-      <ImageBackground source={{uri: route.params.images}} resizeMode="cover" style={globalStyles.mainCafeImage}>
+      <ImageBackground source={{uri: route.params?.images}} resizeMode="cover" style={globalStyles.mainCafeImage}>
         <LinearGradient colors={["rgba(255,255,255, 0.03)", "rgba(0,0,0, 1)"]} locations={[0, 1]} style={globalStyles.cafeImageGradient}>
           <View>
-            <Text style={globalStyles.cafeTitle}>{route.params.name}</Text>
-            <Text style={[globalStyles.cafeText, {color: WHITE}]}>{route.params.description}</Text>
-            <Text style={[globalStyles.cafeText, {color: WHITE}]}>{route.params.address}</Text>
+            <Text style={globalStyles.cafeTitle}>{route.params?.name}</Text>
+            <Text style={[globalStyles.cafeText, {color: WHITE}]}>{route.params?.description}</Text>
+            <Text style={[globalStyles.cafeText, {color: WHITE}]}>{route.params?.address}</Text>
           </View>
         </LinearGradient>
       </ImageBackground>

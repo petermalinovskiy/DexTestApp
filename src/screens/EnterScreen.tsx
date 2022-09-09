@@ -22,7 +22,7 @@ export const EnterScreen: React.FC<HomeScreenProps> = ({navigation}) => {
           <Text style={globalStyles.loginText}>CoffeTime</Text>
           <View>
             <View style={[globalStyles.loginButton, {backgroundColor: BLUE}]}>
-              <TouchableWithoutFeedback onPress={() => navigation.navigate('Login')}>
+              <TouchableWithoutFeedback  onPress={() => navigation.navigate('Login')}>
                 <View style={globalStyles.containerRow}>              
                   <Text style={globalStyles.loginButtonText}>Войти</Text>
                 </View>

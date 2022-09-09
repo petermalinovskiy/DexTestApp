@@ -9,6 +9,7 @@ import {
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import Navigate from './navigation';
 
+
 const App = () => {
   return (
     <SafeAreaProvider>

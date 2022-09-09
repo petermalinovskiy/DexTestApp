@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { FlatList } from 'react-native-gesture-handler';
 import { useAppDispatch, useAppSelector } from '../app/hooks';
 import { getAllCafe, selectCafeAll } from '../app/reducers/cafeAllReducer';
 import { selectSessionID } from '../app/reducers/loginReducer';
@@ -8,8 +7,9 @@ import { NoList } from '../components/NoList';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Icon from 'react-native-vector-icons/FontAwesome'
 import { BLACK, LIGHT_GREEN } from '../../styles/stylesConstant';
-import { TouchableWithoutFeedback, View } from 'react-native';
+import { FlatList, TouchableWithoutFeedback, View } from 'react-native';
 import globalStyles from '../../styles/Styles';
+import { Map } from '../components/Map';
 
 const Main = () => {
   const dispatch = useAppDispatch();
@@ -36,6 +36,8 @@ const Main = () => {
 
   const getData  = () => getAllCafeData(getAllCafeURL).then((data) => (dispatch(getAllCafe(data))));
   getData()
+
+  const mapCoordinates = allCafeData.map(i => i.coordinates)
 
   return ( 
     <SafeAreaView style={{flex: 1}}>
@@ -66,7 +68,7 @@ const Main = () => {
         renderItem={({item}) => <CafeItem cafeData={item}/>}
         keyExtractor={item => item.id}/>
     ) : <NoList/>
-    ) : null }
+    ) : <Map allCafeData={allCafeData}/> }
 
     </SafeAreaView>
   );

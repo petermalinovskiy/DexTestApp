@@ -10,8 +10,8 @@ import { NavigationContainer } from "@react-navigation/native";
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { useAppSelector } from "./src/app/hooks";
 import { selectSessionID } from "./src/app/reducers/loginReducer";
-import Icon from 'react-native-vector-icons/FontAwesome'
-import { BLUE, LITE_GREY, LOBSTER} from "./styles/stylesConstant";
+import Icon from 'react-native-vector-icons/FontAwesome';
+import { BLUE, LITE_GREY, LOBSTER} from './styles/stylesConstant';
 import { Favorite } from "./src/screens/Favorite";
 
 export type StackParamList = {
@@ -19,7 +19,7 @@ export type StackParamList = {
   Login: undefined;
   Registration: undefined;
   Main: undefined;
-  Cafe: {id: string, name: string, address: string, coordinates: string, description: string, images: string,};
+  Cafe: {id: string, name: string, address: string, coordinates: string, description: string, images: string,} | undefined;
   Drink: {sessionID: string|undefined, productId: string};
   Root: undefined;
   Favorite: undefined

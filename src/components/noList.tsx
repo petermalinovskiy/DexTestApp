@@ -7,7 +7,7 @@ export const NoList = () => {
     <View style={globalStyles.spaceAround}>
       <View style={globalStyles.spaceAround}>
         <Image source={require('../../assets/img/noListImage.png')} style={{alignSelf: 'center'}}/>
-        <Text style={[globalStyles.cafeAdress, {textAlign: 'center'}]}>Здесь нет ни одной чашки кофе. {'\n'} Попробуйте вернуться к нам позже.</Text>
+        <Text style={[globalStyles.cafeText, {textAlign: 'center'}]}>Здесь нет ни одной чашки кофе. {'\n'} Попробуйте вернуться к нам позже.</Text>
       </View>
     </View>
 
