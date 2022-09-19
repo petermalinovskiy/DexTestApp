@@ -1,10 +1,14 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Image, Pressable, Text, View } from "react-native";
 import globalStyles from '../../styles/Styles'
 import { TopSaleFlag } from "../components/TopSaleFlag";
 import DrinkIcons from "../components/DrinkIcons";
 import { DrinkProps } from "../../navigation";
 import { LikeButton } from "../components/LikeButton";
+import { serverRequest } from "../features/serverRequest";
+import { getDrinkURL } from "../features/requestURL";
+import { useAppSelector } from "../app/hooks";
+import { selectProductLike } from "../app/reducers/likeReducer";
 
 type ProductData = {
   id: string,
@@ -24,6 +28,7 @@ type ProductData = {
 }
  
 export const Drink = ({navigation, route}: DrinkProps) => {
+  const likeProduct = useAppSelector(selectProductLike);
   const [productData, setProductData] = useState<ProductData|null>(null) 
 
   const myProduct = {
@@ -31,27 +36,13 @@ export const Drink = ({navigation, route}: DrinkProps) => {
     productId: route.params.productId,
   }
 
-  const getDrinkURL  = 'http://ci2.dextechnology.com:8000/api/Product/GetProduct'
-
-  const getCafeData = (url: string) => { 
-    return fetch(url, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(myProduct)
-    })
-    .then((r) => r.json())
-    .catch(function(error) {
-      console.log(error)
-    }); 
-  };
-
-  const getData  = () => getCafeData(getDrinkURL).then((data) => (setProductData(data)));
-  getData()
+  useEffect(() => {
+    const fetchData = async () => await serverRequest(getDrinkURL, myProduct).then((data) => (setProductData(data)))
+    fetchData()
+  }, [likeProduct])
 
   return ( 
-    <View style={{flex: 1}}>
+    <View style={globalStyles.flex}>
       <TopSaleFlag/>
       <View style={[globalStyles.spaceAround, {paddingHorizontal: 20,}]}>
         <Image source={{uri: productData?.imagesPath}} style={{width: '100%', height: '40%'}}/>

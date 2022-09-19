@@ -1,34 +1,24 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { FlatList } from "react-native-gesture-handler";
 import { useAppDispatch, useAppSelector } from "../app/hooks";
 import { getAllFavorite, selectFavoriteAll } from "../app/reducers/favoriteReducer";
-import { selectSessionID } from "../app/reducers/loginReducer";
+import { selectSessionID } from "../app/reducers/authorizationReducer";
 import { DrinkItem } from "../components/DrinkItem";
-
+import { NoList } from "../components/NoList";
+import { getAllProductURL } from "../features/requestURL";
+import { serverRequest } from "../features/serverRequest";
+import { selectProductLike } from "../app/reducers/likeReducer";
  
 export const Favorite = () => {
   const dispatch = useAppDispatch();
   const allFavoriteData = useAppSelector(selectFavoriteAll).filter(i => i.favorite)
   const sessionID = useAppSelector(selectSessionID);
+  const likeProduct = useAppSelector(selectProductLike);
 
-  const getCafeURL  = 'http://ci2.dextechnology.com:8000/api/Product/GetAll'
-
-  const getCafeData = (url: string) => { 
-    return fetch(url, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(sessionID)
-    })
-    .then((r) => r.json())
-    .catch(function(error) {
-      console.log(error)
-    });
-  };
-
-  const getData = () => getCafeData(getCafeURL).then((data) => (dispatch(getAllFavorite(data))));
-  getData()
+  useEffect(() => {
+    const fetchData = async () => await serverRequest(getAllProductURL, sessionID).then((data) => (dispatch(getAllFavorite(data))))
+    fetchData()
+  }, [likeProduct]);
 
   return (
     <FlatList
@@ -36,6 +26,7 @@ export const Favorite = () => {
     renderItem={({item}) => <DrinkItem drinkItemData={item}/>}
     keyExtractor={item => item.id}
     numColumns={2}
-    contentContainerStyle={{justifyContent: 'space-around'}}/>
+    contentContainerStyle={{justifyContent: 'space-around'}}
+    ListEmptyComponent={<NoList/>}/>
   );
 }

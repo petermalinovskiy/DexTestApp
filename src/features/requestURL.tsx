@@ -1,0 +1,8 @@
+export const getAllCafeURL  = 'http://ci2.dextechnology.com:8000/api/Cafe/GetAll'
+export const getCafeURL  = 'http://ci2.dextechnology.com:8000/api/Product/GetProductsCafe' 
+export const getDrinkURL  = 'http://ci2.dextechnology.com:8000/api/Product/GetProduct'
+export const getAllProductURL  = 'http://ci2.dextechnology.com:8000/api/Product/GetAll'
+export const authorizationURL  = 'http://ci2.dextechnology.com:8000/api/User/Authorization'
+export const registrationURL  = 'http://ci2.dextechnology.com:8000/api/User/Register'
+export const setFavoriteURL  = 'http://ci2.dextechnology.com:8000/api/Favorite/Set'
+export const unSetFavoriteURL  = 'http://ci2.dextechnology.com:8000/api/Favorite/Unset'

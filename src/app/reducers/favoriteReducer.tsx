@@ -1,4 +1,4 @@
-import {createAsyncThunk, createSlice, PayloadAction} from '@reduxjs/toolkit';
+import { createSlice, PayloadAction} from '@reduxjs/toolkit';
 import { RootState } from '../store';
 
 interface FavoriteAllState {
@@ -15,16 +15,7 @@ type CafeProductItemData = {
 }
 
 const initialState: FavoriteAllState = {
-  ProductAllData: [  
-    {
-      id: '',
-      cofeId: '',
-      name: '',
-      price: 0,
-      favorite: false,
-      imagesPath: ''
-    }
-  ]
+  ProductAllData: []
 };
 
 export const favoriteAllSlice = createSlice({

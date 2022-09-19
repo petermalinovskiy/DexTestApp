@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../app/hooks';
 import { getAllCafe, selectCafeAll } from '../app/reducers/cafeAllReducer';
-import { selectSessionID } from '../app/reducers/loginReducer';
+import { selectSessionID } from '../app/reducers/authorizationReducer';
 import { CafeItem } from '../components/CafeItem';
 import { NoList } from '../components/NoList';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -10,39 +10,25 @@ import { BLACK, LIGHT_GREEN } from '../../styles/stylesConstant';
 import { FlatList, TouchableWithoutFeedback, View } from 'react-native';
 import globalStyles from '../../styles/Styles';
 import { Map } from '../components/Map';
+import { serverRequest } from '../features/serverRequest';
+import { getAllCafeURL } from '../features/requestURL';
 
 const Main = () => {
   const dispatch = useAppDispatch();
   const sessionID = useAppSelector(selectSessionID);
-  const allCafeData = useAppSelector(selectCafeAll)
+  const allCafeData = useAppSelector(state => state.cafeAll.CafeAllData)
   const [mapToggle, setMapToggle] = useState<boolean>(false)
 
+  useEffect(() => {
+    const fetchData = async () => await serverRequest(getAllCafeURL, sessionID).then((data) => (dispatch(getAllCafe(data))))
+    fetchData()
+  }, [sessionID])
 
-  const getAllCafeURL  = 'http://ci2.dextechnology.com:8000/api/Cafe/GetAll'
-
-  const getAllCafeData = (url: string) => { 
-    return fetch(url, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(sessionID)
-    })
-    .then((r) => r.json())
-    .catch(function(error) {
-      console.log(error)
-    });
-  };
-
-  const getData  = () => getAllCafeData(getAllCafeURL).then((data) => (dispatch(getAllCafe(data))));
-  getData()
-
-  const mapCoordinates = allCafeData.map(i => i.coordinates)
 
   return ( 
-    <SafeAreaView style={{flex: 1}}>
+    <SafeAreaView style={globalStyles.flex}>
       <View style={globalStyles.mapToggle}>
-        <TouchableWithoutFeedback  onPress={() => !mapToggle ? setMapToggle(true) : null}>
+        <TouchableWithoutFeedback  onPress={() =>setMapToggle(prev => prev||!prev)}>
           <Icon
             name="map-marker" 
             size={25} 
@@ -50,24 +36,21 @@ const Main = () => {
             style={[globalStyles.mapToggleButton, (mapToggle ? {backgroundColor: LIGHT_GREEN} : null)]}
           />
         </TouchableWithoutFeedback>
-        <TouchableWithoutFeedback onPress={() => mapToggle ? setMapToggle(false) : null}>
+        <TouchableWithoutFeedback onPress={() =>setMapToggle(prev => prev&&!prev)}>
           <Icon
             name="list" size={25} 
             color={BLACK} 
             style={[globalStyles.mapToggleButton, (!mapToggle ? {backgroundColor: LIGHT_GREEN} : null)]}
-            
           />          
         </TouchableWithoutFeedback>
-
       </View>
     {!mapToggle ? (
-      (allCafeData.length > 0)  ? (
       <FlatList
         data={allCafeData}
-        
         renderItem={({item}) => <CafeItem cafeData={item}/>}
-        keyExtractor={item => item.id}/>
-    ) : <NoList/>
+        keyExtractor={item => item.id}
+        ListEmptyComponent={<NoList/>}
+        style={{marginTop: 55}}/>
     ) : <Map allCafeData={allCafeData}/> }
 
     </SafeAreaView>

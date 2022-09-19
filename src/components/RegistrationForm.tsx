@@ -1,16 +1,14 @@
-import React, { useState} from 'react'
-import { Text, TextInput, TouchableOpacity, Keyboard , View, Modal, Button } from 'react-native';
+import React, { useRef, useState} from 'react'
+import { Text, TextInput, TouchableOpacity, View, Modal, Button } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { LIGHT_GREEN, WHITE } from '../../styles/stylesConstant';
 import { useNavigation } from '@react-navigation/native';
 import { RegistrationProfileScreenNavigationProp } from '../../navigation';
 import globalStyles from '../../styles/Styles';
+import { registrationURL } from '../features/requestURL';
+import { request } from '../features/serverRequest';
 
-interface IRegistrationFormProps {
-
-}
- 
-export const RegistrationForm: React.FC<IRegistrationFormProps> = () => {
+export const RegistrationForm = () => {
   const [emailInputValue, setEmailInputValue] = useState<string>('')
   const [passwordInputValue, setPasswordInputValue] = useState<string>('')
   const [repeatPasswordInputValue, setRepeatPasswordInputValue] = useState<string>('')
@@ -25,26 +23,16 @@ export const RegistrationForm: React.FC<IRegistrationFormProps> = () => {
     password: passwordInputValue
   }
 
-  const registrationURL  = 'http://ci2.dextechnology.com:8000/api/User/Register'
-
-  const registration = (url: string) => { 
-    return fetch(url, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(user)
-    })
-    .then((r) => (console.log(r.ok), r.ok ? setIsResgistred(true) : null))
-    .catch(function(error) {
-      console.log(error)
-    });
-  };
-
-  const getRegistred = () =>  registration(registrationURL);
+  const getRegistred = () =>  {
+    return request(registrationURL, user)
+      .then((r) => (console.log(r.ok), r.ok ? setIsResgistred(true) : null))
+      .catch(function(error) {
+        console.log(error)
+      })
+  }
 
   const registrationHandler = () => {
-    if(passwordInputValue!==repeatPasswordInputValue) {
+    if(passwordInputValue&&passwordInputValue!==repeatPasswordInputValue) {
       setPasswordError(true)
     } else { 
     getRegistred()
@@ -54,6 +42,9 @@ export const RegistrationForm: React.FC<IRegistrationFormProps> = () => {
     .then(() => setModalVisible(true))
     }
   }
+
+  const passwordInput1 = useRef<TextInput>(null)
+  const passwordInput2 = useRef<TextInput>(null)
   
   return (
     <SafeAreaView>
@@ -61,7 +52,7 @@ export const RegistrationForm: React.FC<IRegistrationFormProps> = () => {
       <Modal transparent={true} visible={modalVisible}>
         <View style={globalStyles.modal}>
           <View style={globalStyles.modalBlock}>
-            <Text style={globalStyles.Modalitle}>{isResgistred ? 'Регистрация прошла успешно' : 'Что-то пошло не так. Попробуйте еще раз'}</Text>
+            <Text style={globalStyles.ModalTitle}>{isResgistred ? 'Регистрация прошла успешно' : 'Что-то пошло не так. Попробуйте еще раз'}</Text>
             <TouchableOpacity style={[globalStyles.loginButton, {backgroundColor: LIGHT_GREEN, minWidth: '80%'}]} onPress={isResgistred ? (() => navigation.navigate('Login')) : (() => (setModalVisible(false)))}>
               <Text style={globalStyles.loginButtonText}>{isResgistred ? 'Войти' : 'Закрыть'}</Text>
             </TouchableOpacity>
@@ -75,7 +66,7 @@ export const RegistrationForm: React.FC<IRegistrationFormProps> = () => {
           value={emailInputValue}
           placeholder="email"
           placeholderTextColor={WHITE}
-          onSubmitEditing={Keyboard.dismiss}
+          onSubmitEditing={() => passwordInput1?.current?.focus()}
         />
       </View>
       <View style={[globalStyles.inputView,  (passwordError ? globalStyles.errorInputView:null)]}>
@@ -86,7 +77,8 @@ export const RegistrationForm: React.FC<IRegistrationFormProps> = () => {
           secureTextEntry={true}
           onChangeText={value => (setPasswordInputValue(value), setPasswordError(false))}
           value={passwordInputValue}
-          onSubmitEditing={Keyboard.dismiss}
+          onSubmitEditing={() => passwordInput2?.current?.focus()}
+          ref={passwordInput1}
         />
       </View>
       <View style={[globalStyles.inputView,  (passwordError ? globalStyles.errorInputView:null)]}>
@@ -97,7 +89,8 @@ export const RegistrationForm: React.FC<IRegistrationFormProps> = () => {
           secureTextEntry={true}
           onChangeText={value => (setRepeatPasswordInputValue(value), setPasswordError(false))}
           value={repeatPasswordInputValue}
-          onSubmitEditing={Keyboard.dismiss}
+          onSubmitEditing={() => registrationHandler()}
+          ref={passwordInput2}
         />
       </View>
 

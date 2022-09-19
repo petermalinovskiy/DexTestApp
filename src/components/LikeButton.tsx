@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useCallback } from "react";
 import Icon from 'react-native-vector-icons/FontAwesome'
 import { LIKE_RED } from "../../styles/stylesConstant";
-import { useAppSelector } from "../app/hooks";
-import { selectSessionID } from "../app/reducers/loginReducer";
+import { useAppDispatch, useAppSelector } from "../app/hooks";
+import { selectSessionID } from "../app/reducers/authorizationReducer";
+import { like } from "../app/reducers/likeReducer";
+import { setFavoriteURL, unSetFavoriteURL } from "../features/requestURL";
+import { serverRequest } from "../features/serverRequest";
 
 interface LikeButtonProps {
   favorite: boolean|undefined,
@@ -11,41 +14,32 @@ interface LikeButtonProps {
 }
  
 export const LikeButton: React.FC<LikeButtonProps> = ({favorite, id, size}) => {
-  const favoriteTrue = <Icon name="heart" size={size} color={LIKE_RED} onPress={() => unSetFavorite()}/>
-  const favoriteFalse = <Icon name="heart-o" size={size} color={LIKE_RED} onPress={() => setFavorite()} />
-
+  const dispatch = useAppDispatch();
   const sessionID = useAppSelector(selectSessionID);
-
-
 
   const myProduct = {
     sessionID: sessionID,
     productId: id,
   }
 
+  const favoriteURL = (favorite ? unSetFavoriteURL : setFavoriteURL);
+  const favoriteIconName = (favorite ? "heart" : "heart-o");
+  const favoriteID = (favorite ? id : undefined);
 
-  const setFavoriteURL  = 'http://ci2.dextechnology.com:8000/api/Favorite/Set'
-  const unSetFavoriteURL  = 'http://ci2.dextechnology.com:8000/api/Favorite/Unset'
+  const favoriteReducerData = [{
+    productID: favoriteID,
+    favorite: favorite
+  }]
 
-  const favoriteToggleRequest = (url: string) => { 
-    return fetch(url, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(myProduct)
-    })
-    .then((r) => r.json())
-    .catch(function(error) {
-      console.log(error)
-    });
-  };
+  const favoriteToggle  = () => {
+    serverRequest(favoriteURL, myProduct).then(() => dispatch(like(favoriteReducerData)))
+  }
 
-  const setFavorite  = () => favoriteToggleRequest(setFavoriteURL)
-  const unSetFavorite  = () => favoriteToggleRequest(unSetFavoriteURL)
+  const favoriteIconRender = useCallback(()=>(<Icon name={favoriteIconName} size={size} color={LIKE_RED} onPress={() => favoriteToggle()}/>), [favoriteReducerData] ) 
+
   return ( 
     <> 
-      {favorite ? favoriteTrue : favoriteFalse}
+      {favoriteIconRender()}
     </>
    
    );

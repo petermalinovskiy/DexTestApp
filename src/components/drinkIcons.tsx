@@ -3,7 +3,6 @@ import { Image, Text, View } from "react-native";
 import globalStyles from '../../styles/Styles'
 import {iconData} from '../features/data'
 
- 
 const DrinkIcons: React.FC = () => {
   return ( 
     <View style={globalStyles.containerRow}>

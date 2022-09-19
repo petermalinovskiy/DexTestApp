@@ -1,16 +1,18 @@
 import {configureStore, ThunkAction, Action} from '@reduxjs/toolkit';
 
-import loginReducer from './reducers/loginReducer';
+import authorizationReducer from './reducers/authorizationReducer';
 import cafeAllReducer from './reducers/cafeAllReducer';
-import cafeProductAllReducer from './reducers/cafeProductAllReducer';
+import productListReducer from './reducers/productListReducer';
 import favoriteReducer from './reducers/favoriteReducer';
+import likeReducer from './reducers/likeReducer';
 
 export const store = configureStore({
   reducer: {
-    sessionID: loginReducer,
+    sessionID: authorizationReducer,
     cafeAll: cafeAllReducer,
-    cafeProductAll: cafeProductAllReducer,
+    productList: productListReducer,
     favorite: favoriteReducer,
+    ProductLike: likeReducer
   },
 });
 

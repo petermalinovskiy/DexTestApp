@@ -10,6 +10,5 @@ export const NoList = () => {
         <Text style={[globalStyles.cafeText, {textAlign: 'center'}]}>Здесь нет ни одной чашки кофе. {'\n'} Попробуйте вернуться к нам позже.</Text>
       </View>
     </View>
-
    );
 }

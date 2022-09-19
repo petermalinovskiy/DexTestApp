@@ -4,7 +4,7 @@ import { Image, Text, TouchableWithoutFeedback, View } from "react-native";
 import { CafeProfileScreenNavigationProp } from "../../navigation";
 import globalStyles from '../../styles/Styles';
 import { useAppSelector } from "../app/hooks";
-import { selectSessionID } from "../app/reducers/loginReducer";
+import { selectSessionID } from "../app/reducers/authorizationReducer";
 import { LikeButton } from "./LikeButton";
 
 interface DrinkCardProps {

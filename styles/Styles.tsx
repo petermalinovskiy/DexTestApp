@@ -3,6 +3,10 @@ import { StyleSheet } from "react-native";
 import { DISPLAY_REGULAR, DISPLAY_BOLD, ERROR_RED, LITE_GREY, LOBSTER, WHITE, GREY, LIGHT_GREEN, DISPLAY_LIGHT, BLACK } from "./stylesConstant";
 
 const globalStyles = StyleSheet.create({
+  flex: {
+    flex: 1,
+  },
+
   loginButton: {
     height: 52,
     alignSelf: 'center',
@@ -44,7 +48,7 @@ const globalStyles = StyleSheet.create({
     height: 50,
     flex: 1,
     padding: 10,
-    color: LITE_GREY,
+    color: WHITE,
   },
 
   loginError: {
@@ -87,7 +91,7 @@ const globalStyles = StyleSheet.create({
     shadowRadius: 40
   },
 
-  Modalitle: {
+  ModalTitle: {
     fontFamily: DISPLAY_REGULAR,
     fontSize: 16,
     color: GREY
@@ -227,6 +231,8 @@ const globalStyles = StyleSheet.create({
   },
 
   mapToggle: {
+    position: 'absolute',
+    zIndex: 2,
     marginTop: 5,
     flexDirection: 'row',
     width: '40%',

@@ -1,15 +1,14 @@
-import React, { useState} from 'react'
-import { Text, TextInput, TouchableOpacity, Keyboard , View } from 'react-native';
+import React, { useRef, useState} from 'react'
+import { Text, TextInput, TouchableOpacity, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import globalStyles from '../../styles/Styles';
 import { BLUE, WHITE } from '../../styles/stylesConstant';
 import { useAppDispatch } from '../app/hooks';
-import { login } from '../app/reducers/loginReducer';
-
-interface ILoginFormProps {
-}
+import { login } from '../app/reducers/authorizationReducer';
+import { authorizationURL } from '../features/requestURL';
+import { serverRequest } from '../features/serverRequest';
  
-export const LoginForm: React.FC<ILoginFormProps> = () => {
+export const LoginForm = () => {
   const [emailInputValue, setEmailInputValue] = useState<string>('')
   const [passwordInputValue, setPasswordInputValue] = useState<string>('')
   const [loginError, setLoginError] = useState<boolean>(false)
@@ -20,30 +19,15 @@ export const LoginForm: React.FC<ILoginFormProps> = () => {
     password: passwordInputValue
   }
 
-  const authorizationURL  = 'http://ci2.dextechnology.com:8000/api/User/Authorization'
-
-  const authorization = (url: string) => { 
-    return fetch(url, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(user)
-    })
-    .then((r) => r.json())
-    .catch(function(error) {
-      setLoginError(true);
-      console.log(error)
-    });
-  };
-
-  const getAuthorized = () =>  authorization(authorizationURL).then((data) => (console.log(data), dispatch(login(data))));
+  const getAuthorized = () =>  serverRequest(authorizationURL, user).then((data) => (dispatch(login(data))));
 
   const authorizeHandler = () => {
     getAuthorized()
     .then(() => setEmailInputValue(''))
     .then(() => setPasswordInputValue(''))
   } 
+
+  const passwordInput = useRef<TextInput>(null)
   
   return (
     <SafeAreaView>
@@ -55,7 +39,7 @@ export const LoginForm: React.FC<ILoginFormProps> = () => {
           value={emailInputValue}
           placeholder="email"
           placeholderTextColor={WHITE}
-          onSubmitEditing={Keyboard.dismiss}
+          onSubmitEditing={() => passwordInput?.current?.focus()}
         />
       </View>
       <View style={[globalStyles.inputView,  (loginError ? globalStyles.errorInputView:null)]}>
@@ -66,7 +50,8 @@ export const LoginForm: React.FC<ILoginFormProps> = () => {
           secureTextEntry={true}
           onChangeText={value => (setPasswordInputValue(value), setLoginError(false))}
           value={passwordInputValue}
-          onSubmitEditing={Keyboard.dismiss}
+          onSubmitEditing={() => authorizeHandler()}
+          ref={passwordInput}
         />
       </View>
 

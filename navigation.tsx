@@ -9,7 +9,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from "@react-navigation/native";
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { useAppSelector } from "./src/app/hooks";
-import { selectSessionID } from "./src/app/reducers/loginReducer";
+import { selectSessionID } from "./src/app/reducers/authorizationReducer";
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { BLUE, LITE_GREY, LOBSTER} from './styles/stylesConstant';
 import { Favorite } from "./src/screens/Favorite";

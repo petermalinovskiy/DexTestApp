@@ -1,10 +1,9 @@
 import { useNavigation } from "@react-navigation/native";
 import React, { useState } from "react"; 
-import { Modal, StyleSheet, Text, TouchableWithoutFeedback, View } from "react-native";
-import YaMap, { Circle, Polyline, Geocoder, Marker } from 'react-native-yamap';
+import { Text, TouchableWithoutFeedback, View } from "react-native";
+import YaMap, { Marker } from 'react-native-yamap';
 import { MainProfileScreenNavigationProp } from "../../navigation";
 import globalStyles from "../../styles/Styles";
-import { WHITE } from "../../styles/stylesConstant";
 
 YaMap.init('01f330f0-0188-44c8-a36d-f4e0b38a746b');
 
@@ -78,6 +77,3 @@ export const Map: React.FC<MapProps> = ({allCafeData}) => {
   );
 }
 
-const styles = StyleSheet.create({
-
-})

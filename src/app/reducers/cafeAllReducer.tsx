@@ -1,4 +1,4 @@
-import {createAsyncThunk, createSlice, PayloadAction} from '@reduxjs/toolkit';
+import { createSlice, PayloadAction} from '@reduxjs/toolkit';
 import { RootState } from '../store';
 
 interface cafeAllState {
@@ -15,16 +15,7 @@ type CafeItemData = {
 }
 
 const initialState: cafeAllState = {
-  CafeAllData: [  
-    {
-      id: '',
-      name: '',
-      address: '',
-      coordinates: '',
-      description: '',
-      images: ''
-    }
-  ]
+  CafeAllData: []
 };
 
 export const cafeAllSlice = createSlice({
