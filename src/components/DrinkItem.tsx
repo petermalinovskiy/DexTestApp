@@ -2,7 +2,7 @@ import { useNavigation } from "@react-navigation/native";
 import React from "react";
 import { Image, Text, TouchableWithoutFeedback, View } from "react-native";
 import { CafeProfileScreenNavigationProp } from "../../navigation";
-import globalStyles from '../../styles/Styles';
+import { globalStyles } from '../../styles/Styles';
 import { useAppSelector } from "../app/hooks";
 import { selectSessionID } from "../app/reducers/authorizationReducer";
 import { LikeButton } from "./LikeButton";
@@ -30,7 +30,7 @@ export const DrinkItem: React.FC<DrinkCardProps> = ({drinkItemData}) => {
   
   return (
     <TouchableWithoutFeedback onPress={() => navigation.navigate('Drink', myProduct)}>
-      <View  style={globalStyles.cafeDrinkContainer}>
+      <View  style={[globalStyles.cafeDrinkContainer, globalStyles.shadow]}>
         <Text style={globalStyles.cafeDrinkTitle}>{drinkItemData.name}</Text>
         <Text style={[globalStyles.cafeText, {fontSize: 12}]}>кофейный напиток</Text>
         <Image source={{uri: drinkItemData.imagesPath}} style={{height: 100, width: '100%',}}/>

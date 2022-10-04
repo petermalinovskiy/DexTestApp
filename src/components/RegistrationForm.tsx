@@ -4,7 +4,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { LIGHT_GREEN, WHITE } from '../../styles/stylesConstant';
 import { useNavigation } from '@react-navigation/native';
 import { RegistrationProfileScreenNavigationProp } from '../../navigation';
-import globalStyles from '../../styles/Styles';
+import { globalStyles } from '../../styles/Styles';
 import { registrationURL } from '../features/requestURL';
 import { request } from '../features/serverRequest';
 

@@ -8,15 +8,17 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import Icon from 'react-native-vector-icons/FontAwesome'
 import { BLACK, LIGHT_GREEN } from '../../styles/stylesConstant';
 import { FlatList, TouchableWithoutFeedback, View } from 'react-native';
-import globalStyles from '../../styles/Styles';
+import { globalStyles } from '../../styles/Styles';
 import { Map } from '../components/Map';
 import { serverRequest } from '../features/serverRequest';
 import { getAllCafeURL } from '../features/requestURL';
+import { MainProps } from '../../navigation';
+import { TopLine } from '../components/TopLine';
 
-const Main = () => {
+const Main = ({navigation}: MainProps) => {
   const dispatch = useAppDispatch();
   const sessionID = useAppSelector(selectSessionID);
-  const allCafeData = useAppSelector(state => state.cafeAll.CafeAllData)
+  const allCafeData = useAppSelector(selectCafeAll)
   const [mapToggle, setMapToggle] = useState<boolean>(false)
 
   useEffect(() => {
@@ -24,9 +26,19 @@ const Main = () => {
     fetchData()
   }, [sessionID])
 
+  React.useLayoutEffect(() => {
+    navigation.setOptions({
+      headerRight: () => (
+        <Icon name={"heart-o"} size={20}  onPress={()=>navigation.navigate('Favorite')} style={{marginRight: 10}}/>
+      ),
+    });
+  }, [navigation]);
+
 
   return ( 
-    <SafeAreaView style={globalStyles.flex}>
+    <SafeAreaView style={[globalStyles.flex, globalStyles.bgWhite]}>
+      <TopLine/>
+      {allCafeData ? 
       <View style={globalStyles.mapToggle}>
         <TouchableWithoutFeedback  onPress={() =>setMapToggle(prev => prev||!prev)}>
           <Icon
@@ -43,7 +55,7 @@ const Main = () => {
             style={[globalStyles.mapToggleButton, (!mapToggle ? {backgroundColor: LIGHT_GREEN} : null)]}
           />          
         </TouchableWithoutFeedback>
-      </View>
+      </View> : null }
     {!mapToggle ? (
       <FlatList
         data={allCafeData}

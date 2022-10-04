@@ -6242,6 +6242,11 @@
   "resolved" "https://registry.npmjs.org/react-native-gradle-plugin/-/react-native-gradle-plugin-0.70.2.tgz"
   "version" "0.70.2"
 
+"react-native-image-crop-picker@^0.38.0":
+  "integrity" "sha512-FaLASXOP7R23pi20vMiVlXl0Y7cwTdl7y7yBqrlrsSH9gl9ibsU5y4mYWPYRbe8x9F/3zPGUE+1F0Gj/QF/peg=="
+  "resolved" "https://registry.npmjs.org/react-native-image-crop-picker/-/react-native-image-crop-picker-0.38.0.tgz"
+  "version" "0.38.0"
+
 "react-native-linear-gradient@^2.6.2":
   "integrity" "sha512-Z8Xxvupsex+9BBFoSYS87bilNPWcRfRsGC0cpJk72Nxb5p2nEkGSBv73xZbEHnW2mUFvP+huYxrVvjZkr/gRjQ=="
   "resolved" "https://registry.npmjs.org/react-native-linear-gradient/-/react-native-linear-gradient-2.6.2.tgz"
@@ -6286,7 +6291,7 @@
   "resolved" "https://registry.npmjs.org/react-native-yamap/-/react-native-yamap-4.1.10.tgz"
   "version" "4.1.10"
 
-"react-native@*", "react-native@>=0.45.0", "react-native@>=0.59", "react-native@0.70.0":
+"react-native@*", "react-native@>=0.40.0", "react-native@>=0.45.0", "react-native@>=0.59", "react-native@0.70.0":
   "integrity" "sha512-QjXLbrK9f+/B2eCzn6kAvglLV/8nwPuFGaFv7ggPpAzFRyx5bVN1dwQLHL3MrP7iXR/M7Jc6Nnid7tmRSic6vA=="
   "resolved" "https://registry.npmjs.org/react-native/-/react-native-0.70.0.tgz"
   "version" "0.70.0"

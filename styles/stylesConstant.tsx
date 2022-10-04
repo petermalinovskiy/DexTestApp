@@ -1,6 +1,6 @@
 export const ERROR_RED: string = '#e8000d'
 export const LIKE_RED: string = '#FF4B55'
-export const LITE_GREY: string = '#474747'
+export const LITE_GREY: string = '#EAEAEA'
 export const GREY: string = '#717171'
 export const WHITE: string = '#FFFFFF'
 export const LIGHT_GREEN: string = '#C8D9AF'

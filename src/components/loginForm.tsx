@@ -1,7 +1,7 @@
 import React, { useRef, useState} from 'react'
 import { Text, TextInput, TouchableOpacity, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import globalStyles from '../../styles/Styles';
+import { globalStyles } from '../../styles/Styles';
 import { BLUE, WHITE } from '../../styles/stylesConstant';
 import { useAppDispatch } from '../app/hooks';
 import { login } from '../app/reducers/authorizationReducer';

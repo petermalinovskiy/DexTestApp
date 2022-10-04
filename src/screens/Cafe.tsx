@@ -9,6 +9,8 @@ import { CafeDescription } from "../components/CafeDescription";
 import { getCafeURL } from "../features/requestURL";
 import { serverRequest } from "../features/serverRequest";
 import { selectProductLike } from "../app/reducers/likeReducer";
+import Icon from 'react-native-vector-icons/FontAwesome'
+import { globalStyles } from "../../styles/Styles";
 
 export const Cafe = ({navigation, route}: CafeProps) => {
   const dispatch = useAppDispatch();
@@ -33,10 +35,18 @@ export const Cafe = ({navigation, route}: CafeProps) => {
     cafeId: route.params?.id
   }
  
- useEffect(() => {
-  const fetchData = async () => await serverRequest(getCafeURL, cafeID).then((data) => (dispatch(getProductList(data))))
-  fetchData()
-},[likeProduct])
+  useEffect(() => {
+    const fetchData = async () => await serverRequest(getCafeURL, cafeID).then((data) => (dispatch(getProductList(data))))
+    fetchData()
+  },[likeProduct])
+
+  React.useLayoutEffect(() => {
+    navigation.setOptions({
+      headerRight: () => (
+        <Icon name={"heart-o"} size={20}  onPress={()=>navigation.navigate('Favorite')} style={{marginRight: 10}}/>
+      ),
+    });
+  }, [navigation]);
  
 
   return ( 
@@ -45,6 +55,7 @@ export const Cafe = ({navigation, route}: CafeProps) => {
         renderItem={({item}) => <DrinkItem drinkItemData={item}/>}
         keyExtractor={item => item.id}
         numColumns={2}
+        style={globalStyles.bgWhite}
         contentContainerStyle={{justifyContent: 'space-around'}}
         ListHeaderComponent={<CafeDescription cafeData={route?.params}/>}
     />

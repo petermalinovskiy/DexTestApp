@@ -2,9 +2,24 @@ import React from "react";
 import { StyleSheet } from "react-native";
 import { DISPLAY_REGULAR, DISPLAY_BOLD, ERROR_RED, LITE_GREY, LOBSTER, WHITE, GREY, LIGHT_GREEN, DISPLAY_LIGHT, BLACK } from "./stylesConstant";
 
-const globalStyles = StyleSheet.create({
+export const globalStyles = StyleSheet.create({
   flex: {
     flex: 1,
+  },
+
+  bgWhite: {
+    backgroundColor: WHITE
+  },
+
+  shadow: {
+    shadowColor: BLACK,
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
   },
 
   loginButton: {
@@ -101,13 +116,14 @@ const globalStyles = StyleSheet.create({
     flexDirection: 'row',
     marginVertical: 5,
     height: 126,
-    backgroundColor: '#ffffff'
+    backgroundColor: WHITE,
   },
 
   cafeDescription: {
     flex: 1,
     flexDirection: 'column',
     paddingLeft: 25,
+    paddingRight: 10,
     justifyContent: 'center',
     shadowRadius: 4,
     shadowColor: BLACK
@@ -135,7 +151,6 @@ const globalStyles = StyleSheet.create({
   mainCafeImage: {
     width: '100%',
     height: 300,
-    marginBottom: 20,
   },
 
   cafeImageGradient: {
@@ -150,7 +165,7 @@ const globalStyles = StyleSheet.create({
     width: '45%',
     height: 220,
     padding: 10,
-    margin: 10
+    margin: 8,
   },
 
   cafeDrinkTitle: {
@@ -202,7 +217,7 @@ const globalStyles = StyleSheet.create({
   iconText: {
     fontFamily: DISPLAY_LIGHT,
     fontSize: 10,
-    color: LITE_GREY,
+    color: GREY,
     textAlign: 'center'
   },
 
@@ -263,8 +278,68 @@ const globalStyles = StyleSheet.create({
     backgroundColor: WHITE,
     padding: 20,
     zIndex: 2
+  },
+
+  cafeDescriptionContainer : {
+    flex: 1,
+    alignItems: 'flex-end',
+    paddingBottom: 5
+  },
+
+  heartContainer: {
+    backgroundColor: WHITE,
+    width: 50,
+    height: 32,
+    borderRadius: 15.5,
+    borderWidth: 1,
+    borderStyle: 'solid',
+    borderColor: GREY,
+  },
+
+  heartButton: {
+    backgroundColor: WHITE,
+    width: 30,
+    height: 30,
+    borderRadius: 15,
+    borderWidth: 0.5,
+    borderStyle: 'solid',
+    borderColor: GREY,
+    padding: 5,
+  },
+
+  topLine: {
+    position: 'absolute',
+    top: 0,
+    zIndex: 3,
+    height: 2,
+    width: '95%',
+    backgroundColor: LITE_GREY,
+    alignSelf: 'center'
+  },
+
+  noList: {
+    minHeight: 600,
+    paddingVertical: 100
+  },
+
+  imagePickerContainer: {
+    width: 130, 
+    height: 130, 
+    borderWidth: 2, 
+    borderColor: WHITE, 
+    borderRadius: 65, 
+    alignSelf: 'center', 
+    padding: 3
+  },
+
+  imagePicker: {
+    width: 120, 
+    height: 120, 
+    borderWidth: 1, 
+    borderColor: WHITE, 
+    borderRadius: 60, 
+    backgroundColor: WHITE, 
+    justifyContent: 'space-around'
   }
 
 })
-
-export default globalStyles

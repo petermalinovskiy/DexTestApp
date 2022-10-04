@@ -11,7 +11,7 @@ import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { useAppSelector } from "./src/app/hooks";
 import { selectSessionID } from "./src/app/reducers/authorizationReducer";
 import Icon from 'react-native-vector-icons/FontAwesome';
-import { BLUE, LITE_GREY, LOBSTER} from './styles/stylesConstant';
+import { BLUE, GREY, LITE_GREY, LOBSTER, WHITE} from './styles/stylesConstant';
 import { Favorite } from "./src/screens/Favorite";
 
 export type StackParamList = {
@@ -87,8 +87,8 @@ export default function Navigate() {
               headerTitleStyle: {
                 fontFamily: LOBSTER,
                 fontSize: 22,
-                color: LITE_GREY,
-                paddingTop: 10
+                color: GREY,
+                paddingTop: 10,
               },
               headerBackImage: ()=>(null)
             }}
@@ -103,10 +103,10 @@ export default function Navigate() {
               headerTitleStyle: {
                 fontFamily: LOBSTER,
                 fontSize: 22,
-                color: LITE_GREY,
+                color: GREY,
                 paddingTop: 10
               },
-              headerBackImage: ()=>(<Icon name="angle-left" color={LITE_GREY} size={30} style={{marginLeft: 10}}/>)
+              headerBackImage: ()=>(<Icon name="angle-left" color={GREY} size={30} style={{marginLeft: 10}}/>)
             }}
           />
           <Stack.Screen
@@ -119,10 +119,10 @@ export default function Navigate() {
               headerTitleStyle: {
                 fontFamily: LOBSTER,
                 fontSize: 22,
-                color: LITE_GREY,
+                color: GREY,
                 paddingTop: 10,
               },
-              headerBackImage: ()=>(<Icon name="angle-left" color={LITE_GREY} size={30} style={{marginLeft: 10}}/>)
+              headerBackImage: ()=>(<Icon name="angle-left" color={GREY} size={30} style={{marginLeft: 10}}/>)
             }}
           />
           <Stack.Screen
@@ -135,10 +135,10 @@ export default function Navigate() {
               headerTitleStyle: {
                 fontFamily: LOBSTER,
                 fontSize: 22,
-                color: LITE_GREY,
+                color: GREY,
                 paddingTop: 10,
               },
-              headerBackImage: ()=>(<Icon name="angle-left" color={LITE_GREY} size={30} style={{marginLeft: 10}}/>)
+              headerBackImage: ()=>(<Icon name="angle-left" color={GREY} size={30} style={{marginLeft: 10}}/>)
             }}
           />
         </>)} 
@@ -146,3 +146,4 @@ export default function Navigate() {
     </NavigationContainer>
   )
 }
+

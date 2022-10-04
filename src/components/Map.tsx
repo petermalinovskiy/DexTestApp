@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { Text, TouchableWithoutFeedback, View } from "react-native";
 import YaMap, { Marker } from 'react-native-yamap';
 import { MainProfileScreenNavigationProp } from "../../navigation";
-import globalStyles from "../../styles/Styles";
+import { globalStyles } from "../../styles/Styles";
 
 YaMap.init('01f330f0-0188-44c8-a36d-f4e0b38a746b');
 

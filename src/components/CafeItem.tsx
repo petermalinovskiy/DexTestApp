@@ -2,7 +2,8 @@ import { useNavigation } from "@react-navigation/native";
 import React from "react";
 import { Image, Text, TouchableWithoutFeedback, View } from "react-native";
 import { MainProfileScreenNavigationProp } from "../../navigation";
-import globalStyles from "../../styles/Styles";
+import { globalStyles } from "../../styles/Styles";
+import { GREY } from "../../styles/stylesConstant";
 
 interface CafeIremProps {
   children?: React.ReactNode,
@@ -21,12 +22,13 @@ export const CafeItem: React.FC<CafeIremProps> = ({cafeData}) => {
 
   return (
     <TouchableWithoutFeedback key={cafeData.id} onPress={()=>navigation.navigate('Cafe', cafeData)}>
-      <View style={globalStyles.cafeContainer} >
+      <View style={[globalStyles.cafeContainer, globalStyles.shadow]} >
         <Image source={{uri: cafeData.images }}  style={{height: '100%', width: '28%',}}/>
         <View style={globalStyles.cafeDescription}>
           <Text style={globalStyles.cafeTitle}>{cafeData.name}</Text>
           <Text style={globalStyles.cafeSubText}>Мы находимся:</Text>
           <Text style={globalStyles.cafeText}>{cafeData.address}</Text>
+          <Text style={[globalStyles.cafeSubText, {color: GREY, textAlign: 'right'}]}>подробнее {">"}</Text>
         </View>
       </View>
     </TouchableWithoutFeedback>

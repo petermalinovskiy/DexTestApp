@@ -8,6 +8,8 @@ import { NoList } from "../components/NoList";
 import { getAllProductURL } from "../features/requestURL";
 import { serverRequest } from "../features/serverRequest";
 import { selectProductLike } from "../app/reducers/likeReducer";
+import { TopLine } from "../components/TopLine";
+import { globalStyles } from "../../styles/Styles";
  
 export const Favorite = () => {
   const dispatch = useAppDispatch();
@@ -26,7 +28,9 @@ export const Favorite = () => {
     renderItem={({item}) => <DrinkItem drinkItemData={item}/>}
     keyExtractor={item => item.id}
     numColumns={2}
+    style={globalStyles.bgWhite}
     contentContainerStyle={{justifyContent: 'space-around'}}
+    ListHeaderComponent={<TopLine/>}
     ListEmptyComponent={<NoList/>}/>
   );
 }

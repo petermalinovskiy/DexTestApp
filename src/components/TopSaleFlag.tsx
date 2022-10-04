@@ -1,6 +1,6 @@
 import React from "react";
 import { ImageBackground, Text } from "react-native";
-import globalStyles from '../../styles/Styles'
+import { globalStyles } from '../../styles/Styles'
 import { WHITE } from "../../styles/stylesConstant";
 
  

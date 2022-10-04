@@ -1,9 +1,9 @@
 import React from "react";
 import { Image, Text, View } from "react-native";
-import globalStyles from '../../styles/Styles'
-import {iconData} from '../features/data'
+import { globalStyles } from '../../styles/Styles'
+import { iconData } from '../features/data'
 
-const DrinkIcons: React.FC = () => {
+export const DrinkIcons: React.FC = () => {
   return ( 
     <View style={globalStyles.containerRow}>
       {iconData.map(item => (
@@ -17,5 +17,3 @@ const DrinkIcons: React.FC = () => {
     </View>
    );
 }
- 
-export default DrinkIcons; 

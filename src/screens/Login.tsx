@@ -2,7 +2,7 @@ import React from "react";
 import { Text, ImageBackground } from 'react-native';
 import LinearGradient from "react-native-linear-gradient";
 import { SafeAreaView } from "react-native-safe-area-context";
-import globalStyles from '../../styles/Styles'
+import { globalStyles } from '../../styles/Styles'
 import { LoginForm } from "../components/LoginForm";
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { StackParamList } from "../../navigation";
